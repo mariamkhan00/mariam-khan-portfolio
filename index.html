@@ -6,12 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#071516">
 <meta name="description" content="Mariam Khan — Computer Science student, developer and creative thinker.">
-
 <title>Mariam Khan | Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
@@ -35,12 +33,7 @@ html {
 
 body {
     min-height: 100vh;
-    background: radial-gradient(
-        ellipse at 50% 58%,
-        #102c2c 0%,
-        #091a1b 42%,
-        #061112 100%
-    );
+    background: radial-gradient(ellipse at 50% 58%, #102c2c 0%, #091a1b 42%, #061112 100%);
     color: var(--white);
     font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
@@ -57,16 +50,15 @@ body::before {
         linear-gradient(90deg,rgba(255,255,255,.035) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: linear-gradient(to bottom, black, transparent 90%);
+    z-index: 0;
 }
 
 .site {
     position: relative;
-    min-height: 100svh;
+    min-height: 100vh;
     max-width: 1600px;
     margin: auto;
     padding: 0 clamp(22px,5vw,82px);
-    display: flex;
-    flex-direction: column;
 }
 
 /* NAVIGATION */
@@ -75,7 +67,6 @@ header {
     height: 72px;
     display: flex;
     align-items: center;
-    justify-content: center;
     position: relative;
     z-index: 10;
 }
@@ -83,8 +74,8 @@ header {
 nav {
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 nav a {
@@ -101,20 +92,17 @@ nav a:hover {
     color: var(--pink);
 }
 
-/* HOME HERO */
+/* HOME */
 
 .hero {
     position: relative;
-    flex: 1;
-    min-height: calc(100svh - 73px);
+    min-height: calc(100svh - 72px);
     display: flex;
     align-items: center;
     justify-content: center;
     isolation: isolate;
-    padding: 20px 0 38px;
+    padding: 10px 0 38px;
 }
-
-/* MAIN HEADING */
 
 .hero-title {
     position: absolute;
@@ -133,8 +121,6 @@ nav a:hover {
     color: #f0f2ed;
     animation: titleIn 1s cubic-bezier(.2,.8,.2,1) both;
 }
-
-/* GIRL IMAGE */
 
 .portrait-wrap {
     position: absolute;
@@ -175,7 +161,7 @@ nav a:hover {
     transform-origin: 50% 85%;
 }
 
-/* LEFT SIDE TEXT */
+/* LEFT TEXT */
 
 .side-copy {
     position: absolute;
@@ -200,13 +186,17 @@ nav a:hover {
     margin-bottom: 13px;
 }
 
-/* CONTACT BUTTON */
+/* HERO CONTACT BUTTON */
 
-.contact {
+.hero .contact {
     position: absolute;
     right: 0;
     bottom: 13%;
     z-index: 5;
+}
+
+.contact {
+    display: inline-block;
     text-decoration: none;
     color: white;
     background: linear-gradient(110deg,#a51bd0,#f02ac6);
@@ -219,15 +209,12 @@ nav a:hover {
     text-transform: uppercase;
     box-shadow: 0 0 24px rgba(226,42,203,.35);
     transition: transform .25s,box-shadow .25s;
-    animation: fadeUp .9s .7s both;
 }
 
 .contact:hover {
     transform: translateY(-4px);
     box-shadow: 0 0 34px rgba(226,42,203,.65);
 }
-
-/* SCROLL TEXT */
 
 .scroll-note {
     position: absolute;
@@ -252,8 +239,6 @@ nav a:hover {
     background: #52615d;
 }
 
-/* CORNER TEXT */
-
 .corner-mark {
     position: absolute;
     right: 0;
@@ -266,15 +251,250 @@ nav a:hover {
     text-transform: uppercase;
 }
 
+/* GENERAL SECTION STYLING */
+
+.projects-section,
+.about-section,
+.contact-section {
+    position: relative;
+    padding: 120px 0;
+    border-top: 1px solid rgba(255,255,255,.09);
+    scroll-margin-top: 25px;
+}
+
+.small-label {
+    display: block;
+    color: var(--cyan);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+}
+
+/* PROJECTS HEADING */
+
+.projects-heading {
+    margin-bottom: 65px;
+}
+
+.projects-heading h2,
+.about-content h2,
+.contact-section h2 {
+    font-family: 'Anton', Impact, sans-serif;
+    font-weight: 400;
+    font-size: clamp(55px,9vw,110px);
+    line-height: 1;
+    text-transform: uppercase;
+    margin-top: 18px;
+    color: var(--white);
+}
+
+.projects-heading p,
+.contact-section > p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 18px;
+    line-height: 1.8;
+}
+
+/* PROJECT CARDS */
+
+.project-card {
+    position: relative;
+    padding: 35px;
+    margin-bottom: 55px;
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 5px;
+    background: linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(55px);
+    transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1), border-color .3s;
+}
+
+.project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-card:hover {
+    border-color: rgba(73,231,226,.5);
+}
+
+.project-top {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 30px;
+}
+
+.project-number {
+    font-family: 'Anton', sans-serif;
+    font-size: 55px;
+    color: var(--cyan);
+    line-height: 1;
+}
+
+.project-heading-text {
+    flex: 1;
+}
+
+.project-category {
+    font-size: 9px;
+    letter-spacing: .2em;
+    font-weight: 800;
+    color: var(--cyan);
+    margin-bottom: 8px;
+}
+
+.project-heading-text h3 {
+    font-size: clamp(18px,2.4vw,30px);
+    font-weight: 800;
+    color: var(--white);
+}
+
+.live-project {
+    color: var(--white);
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 30px;
+    padding: 12px 18px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    white-space: nowrap;
+    transition: all .3s;
+}
+
+.live-project:hover {
+    color: var(--bg);
+    background: var(--cyan);
+    border-color: var(--cyan);
+}
+
+/* REAL PROJECT SCREENSHOTS */
+
+.project-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.project-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #102020;
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgba(255,255,255,.12);
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform .7s cubic-bezier(.2,.8,.2,1);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.045);
+}
+
+.project-description {
+    color: #aebbb6;
+    font-size: 13px;
+    line-height: 1.9;
+    max-width: 900px;
+    margin-bottom: 24px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.project-tags span {
+    border: 1px solid rgba(73,231,226,.25);
+    color: #bce8e3;
+    padding: 8px 13px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    border-radius: 3px;
+}
+
+/* ANIMATED BARS */
+
+.project-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,.08);
+    overflow: hidden;
+}
+
+.project-bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg,var(--cyan),var(--pink));
+    transition: width 1.6s cubic-bezier(.2,.8,.2,1) .3s;
+}
+
+.project-card.visible .project-bar span {
+    width: 100%;
+}
+
+/* ABOUT SECTION */
+
+.about-content {
+    max-width: 850px;
+}
+
+.about-content p {
+    margin-top: 30px;
+    color: #b5c0bb;
+    font-size: 15px;
+    line-height: 2;
+    max-width: 750px;
+}
+
+/* CONTACT SECTION */
+
+.contact-section {
+    text-align: center;
+    padding: 130px 15px;
+}
+
+.contact-section h2 {
+    font-size: clamp(55px,10vw,115px);
+}
+
+.contact-section > p {
+    margin-bottom: 30px;
+}
+
+/* FOOTER */
+
+footer {
+    position: relative;
+    padding: 28px 0;
+    border-top: 1px solid rgba(255,255,255,.1);
+    color: #84938e;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: .16em;
+}
+
 /* ANIMATIONS */
 
 @keyframes float {
-    0%,100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-13px) rotate(.6deg);
-    }
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-13px) rotate(.6deg); }
 }
 
 @keyframes titleIn {
@@ -312,7 +532,7 @@ nav a:hover {
     }
 }
 
-/* MOBILE RESPONSIVE */
+/* RESPONSIVE */
 
 @media(max-width:700px) {
 
@@ -325,7 +545,6 @@ nav a:hover {
     }
 
     nav {
-        justify-content: space-between;
         gap: 12px;
     }
 
@@ -366,7 +585,7 @@ nav a:hover {
         margin-bottom: 7px;
     }
 
-    .contact {
+    .hero .contact {
         right: 0;
         bottom: 10%;
         padding: 10px 14px;
@@ -382,10 +601,60 @@ nav a:hover {
         top: 4%;
         font-size: 7px;
     }
+
+    .projects-section,
+    .about-section,
+    .contact-section {
+        padding: 80px 0;
+    }
+
+    .projects-heading {
+        margin-bottom: 40px;
+    }
+
+    .project-card {
+        padding: 19px;
+        margin-bottom: 30px;
+    }
+
+    .project-top {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .project-number {
+        font-size: 38px;
+    }
+
+    .project-heading-text h3 {
+        font-size: 18px;
+    }
+
+    .live-project {
+        margin-left: auto;
+        padding: 9px 12px;
+        font-size: 8px;
+    }
+
+    .project-preview {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .project-description {
+        font-size: 12px;
+    }
+
+    .project-tags span {
+        font-size: 8px;
+    }
+
+    .about-content p {
+        font-size: 13px;
+    }
 }
 
 @media(max-width:390px) {
-
     nav {
         gap: 8px;
     }
@@ -399,7 +668,6 @@ nav a:hover {
     }
 
     .portrait-wrap {
-        height: auto;
         max-height: 61vh;
     }
 
@@ -407,8 +675,12 @@ nav a:hover {
         width: 100px;
     }
 
-    .contact {
+    .hero .contact {
         padding: 9px 11px;
+    }
+
+    .project-top {
+        align-items: flex-start;
     }
 }
 
@@ -420,8 +692,16 @@ nav a:hover {
         scroll-behavior: auto !important;
         transition: none !important;
     }
-}
 
+    .project-card {
+        opacity: 1;
+        transform: none;
+    }
+
+    .project-bar span {
+        width: 100%;
+    }
+}
 </style>
 </head>
 
@@ -429,366 +709,303 @@ nav a:hover {
 
 <div class="site">
 
-    <header>
-        <nav aria-label="Main navigation">
+<!-- NAVIGATION -->
 
-            <a href="#home">Home</a>
+<header>
+    <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#projects">Project</a>
+        <a href="#about">About Me</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
-            <a href="#projects">Project</a>
+<!-- HOME SECTION -->
 
-            <a href="#about">About Me</a>
+<main class="hero" id="home">
 
-            <a href="#contact">Contact</a>
+    <h1 class="hero-title">HI, I'M MARIAM KHAN</h1>
 
-        </nav>
-    </header>
-
-    <main class="hero" id="home">
-
-        <h1 class="hero-title">
-            HI, I'M MARIAM KHAN
-        </h1>
-
-        <div class="corner-mark">
-            Computer Science · Creative Technology
-        </div>
-
-        <div class="portrait-wrap">
-
-            <img
-                class="portrait"
-                src="https://raw.githubusercontent.com/mariamkhan00/mariam-khan-portfolio/main/mariam_portfolio_picture-removebg-preview.png"
-                alt="Mariam Khan 3D illustrated portrait"
-            >
-
-        </div>
-
-        <p class="side-copy">
-
-            <span class="eyebrow">
-                A LITTLE ABOUT ME
-            </span>
-
-            CREATING DIGITAL EXPERIENCES,
-            EXPLORING TECHNOLOGY AND
-            TURNING IDEAS INTO REALITY.
-
-        </p>
-
-        <a
-            class="contact"
-            href="https://linkedin.com/in/mariam-khan-556249438/"
-            target="_blank"
-            rel="noopener"
-        >
-            Let's Connect ↗
-        </a>
-
-        <div class="scroll-note">
-            SCROLL TO EXPLORE
-        </div>
-
-    </main>
-
-</div>
-
-</body>
-</html>
-
-  <!-- PROJECTS -->
-
-  <section class="projects-section" id="projects">
-
-    <div class="projects-heading">
-      <span class="small-label">WHAT I'VE CREATED</span>
-      <h2>MY PROJECTS</h2>
-      <p>Ideas transformed into real-world digital experiences.</p>
+    <div class="corner-mark">
+        Computer Science · Creative Technology
     </div>
 
-    <!-- PROJECT 01 -->
+    <div class="portrait-wrap">
+        <img
+            class="portrait"
+            src="https://raw.githubusercontent.com/mariamkhan00/mariam-khan-portfolio/main/mariam_portfolio_picture-removebg-preview.png"
+            alt="Mariam Khan 3D illustrated portrait"
+        >
+    </div>
+
+    <p class="side-copy">
+        <span class="eyebrow">A LITTLE ABOUT ME</span>
+        CREATING DIGITAL EXPERIENCES,
+        EXPLORING TECHNOLOGY AND
+        TURNING IDEAS INTO REALITY.
+    </p>
+
+    <a class="contact"
+       href="https://linkedin.com/in/mariam-khan-556249438/"
+       target="_blank"
+       rel="noopener">
+       LET'S CONNECT ↗
+    </a>
+
+    <div class="scroll-note">
+        SCROLL TO EXPLORE
+    </div>
+
+</main>
+
+<!-- PROJECTS SECTION -->
+
+<section class="projects-section" id="projects">
+
+    <div class="projects-heading">
+        <span class="small-label">WHAT I'VE CREATED</span>
+
+        <h2>MY PROJECTS</h2>
+
+        <p>
+            Ideas transformed into real-world digital experiences.
+        </p>
+    </div>
+
+    <!-- PROJECT 01: EDUPLUS -->
 
     <article class="project-card">
 
-      <div class="project-top">
+        <div class="project-top">
 
-        <div class="project-number">01</div>
+            <div class="project-number">01</div>
 
-        <div class="project-heading-text">
-          <div class="project-category">
-            EDUCATION TECHNOLOGY
-          </div>
-          <h3>EduPlus – Smart Substitute System</h3>
-        </div>
+            <div class="project-heading-text">
+                <div class="project-category">
+                    EDUCATION TECHNOLOGY
+                </div>
 
-        <a
-          class="live-project"
-          href="https://mariamkhan00.github.io/eduplus-system/"
-          target="_blank"
-          rel="noopener"
-        >
-          LIVE PROJECT ↗
-        </a>
-
-      </div>
-
-      <div class="project-preview">
-
-        <div class="preview-panel dark">
-
-          <div class="preview-topbar">
-            <span class="preview-dot"></span>
-            <span class="preview-dot"></span>
-            <span class="preview-dot"></span>
-          </div>
-
-          <div class="preview-content">
-            <h4>EduPlus Dashboard</h4>
-            <p>Smart Teacher Management</p>
-
-            <div class="preview-stats">
-              <div class="preview-stat">
-                <strong>01</strong>
-                Teachers
-              </div>
-
-              <div class="preview-stat">
-                <strong>02</strong>
-                Find Substitute
-              </div>
-
-              <div class="preview-stat">
-                <strong>03</strong>
-                AI Assistant
-              </div>
+                <h3>EduPlus – Smart Substitute System</h3>
             </div>
-          </div>
+
+            <a class="live-project"
+               href="https://mariamkhan00.github.io/eduplus-system/"
+               target="_blank"
+               rel="noopener">
+               LIVE PROJECT ↗
+            </a>
 
         </div>
 
-        <div class="preview-panel preview-large edu-preview">
+        <div class="project-preview">
 
-          <h4>SMART<br>SUBSTITUTION<br>SYSTEM</h4>
+            <div class="project-image">
+                <img
+                    src="https://raw.githubusercontent.com/mariamkhan00/mariam-khan-portfolio/main/eduplus%20system.jpeg"
+                    alt="EduPlus Smart Substitute System website screenshot"
+                    loading="lazy"
+                >
+            </div>
 
-          <p>
-            Making teacher replacement smarter and easier.
-          </p>
-
-          <div class="preview-line"></div>
-          <div class="preview-line short"></div>
+            <div class="project-image">
+                <img
+                    src="https://raw.githubusercontent.com/mariamkhan00/mariam-khan-portfolio/main/eduplus%20system.jpeg"
+                    alt="EduPlus school management interface"
+                    loading="lazy"
+                >
+            </div>
 
         </div>
 
-      </div>
+        <p class="project-description">
+            EduPlus is a cloud-based Teacher Substitute and Absentee
+            Management System designed for schools, colleges and
+            universities. Its Smart Substitution Engine helps find
+            available teachers through subject matching and fair
+            workload distribution. It also provides school
+            management tools, dashboards and attendance records.
+        </p>
 
-      <p class="project-description">
-        EduPlus is a smart teacher substitution and absentee
-        management platform designed for educational institutions.
-        Its substitution engine helps identify available teachers
-        using subject matching and workload distribution.
-      </p>
+        <div class="project-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Bootstrap 5</span>
+            <span>Google Apps Script</span>
+            <span>Google Sheets</span>
+        </div>
 
-      <div class="project-tags">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>JavaScript</span>
-        <span>Bootstrap 5</span>
-        <span>Google Apps Script</span>
-        <span>Supabase</span>
-      </div>
-
-      <div class="project-bar">
-        <span></span>
-      </div>
+        <div class="project-bar">
+            <span></span>
+        </div>
 
     </article>
 
-    <!-- PROJECT 02 -->
+    <!-- PROJECT 02: QUEST PORTAL -->
 
     <article class="project-card">
 
-      <div class="project-top">
+        <div class="project-top">
 
-        <div class="project-number">02</div>
+            <div class="project-number">02</div>
 
-        <div class="project-heading-text">
-          <div class="project-category">
-            UNIVERSITY WEB DEVELOPMENT
-          </div>
+            <div class="project-heading-text">
+                <div class="project-category">
+                    UNIVERSITY WEB DEVELOPMENT
+                </div>
 
-          <h3>Cybersecurity Department Portal</h3>
-        </div>
-
-        <a
-          class="live-project"
-          href="https://mariamkhan00.github.io/cybersecurity-departmentportal/"
-          target="_blank"
-          rel="noopener"
-        >
-          LIVE PROJECT ↗
-        </a>
-
-      </div>
-
-      <div class="project-preview">
-
-        <div class="preview-panel dark">
-
-          <div class="preview-topbar">
-            <span class="preview-dot"></span>
-            <span class="preview-dot"></span>
-            <span class="preview-dot"></span>
-          </div>
-
-          <div class="preview-content">
-            <h4>QUEST University</h4>
-            <p>Department Portal</p>
-
-            <div class="preview-stats">
-              <div class="preview-stat">
-                <strong>01</strong>
-                Batches
-              </div>
-
-              <div class="preview-stat">
-                <strong>02</strong>
-                AI Chatbot
-              </div>
-
-              <div class="preview-stat">
-                <strong>03</strong>
-                Live Timetable
-              </div>
+                <h3>Cybersecurity Department Portal</h3>
             </div>
-          </div>
+
+            <a class="live-project"
+               href="https://mariamkhan00.github.io/cybersecurity-departmentportal/"
+               target="_blank"
+               rel="noopener">
+               LIVE PROJECT ↗
+            </a>
 
         </div>
 
-        <div class="preview-panel preview-large quest-preview">
+        <div class="project-preview">
 
-          <h4>DEPARTMENT<br>PORTAL</h4>
+            <div class="project-image">
+                <img
+                    src="https://raw.githubusercontent.com/mariamkhan00/mariam-khan-portfolio/main/cybersecurity%20department%20portal.jpeg"
+                    alt="QUEST Cybersecurity Department Portal homepage"
+                    loading="lazy"
+                >
+            </div>
 
-          <p>
-            Academic information and digital university experience.
-          </p>
-
-          <div class="preview-line"></div>
-          <div class="preview-line short"></div>
+            <div class="project-image">
+                <img
+                    src="https://raw.githubusercontent.com/mariamkhan00/mariam-khan-portfolio/main/cybersecurity%20department%20portal.jpeg"
+                    alt="QUEST Department Portal website preview"
+                    loading="lazy"
+                >
+            </div>
 
         </div>
 
-      </div>
+        <p class="project-description">
+            A digital department portal developed for QUEST University,
+            Nawabshah. The portal provides academic information for
+            four student batches, six timetables, a live timetable
+            connected with Google Sheets, department resources and
+            an organized university web experience.
+        </p>
 
-      <p class="project-description">
-        A university department website project designed to
-        present academic information, department resources,
-        student batches, laboratories and timetable information
-        through an organized digital platform.
-      </p>
+        <div class="project-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Bootstrap 5</span>
+            <span>Google Sheets</span>
+            <span>Live Timetable</span>
+        </div>
 
-      <div class="project-tags">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>JavaScript</span>
-        <span>Bootstrap 5</span>
-        <span>Google Sheets Integration</span>
-      </div>
-
-      <div class="project-bar">
-        <span></span>
-      </div>
+        <div class="project-bar">
+            <span></span>
+        </div>
 
     </article>
 
-  </section>
+</section>
 
-  <!-- ABOUT ME -->
+<!-- ABOUT ME -->
 
-  <section class="about-section" id="about">
+<section class="about-section" id="about">
 
     <div class="about-content">
 
-      <span class="small-label">GET TO KNOW ME</span>
+        <span class="small-label">GET TO KNOW ME</span>
 
-      <h2>ABOUT ME</h2>
+        <h2>ABOUT ME</h2>
 
-      <p>
-        I'm Mariam Khan, a Computer Science student at
-        QUEST University, Nawabshah. I enjoy exploring technology,
-        developing websites, creating digital designs and turning
-        creative ideas into practical projects.
-      </p>
+        <p>
+            I'm Mariam Khan, a Computer Science student at
+            QUEST University, Nawabshah. I enjoy exploring technology,
+            developing websites, creating digital designs and turning
+            creative ideas into practical projects.
+
+            My interests include web development, artificial
+            intelligence, cybersecurity, graphic designing,
+            digital art and creative technology.
+
+            I believe in continuous learning, creativity and
+            building projects that solve real-world problems.
+        </p>
 
     </div>
 
-  </section>
+</section>
 
-  <!-- CONTACT -->
+<!-- CONTACT -->
 
-  <section class="contact-section" id="contact">
+<section class="contact-section" id="contact">
 
     <span class="small-label">HAVE A PROJECT IN MIND?</span>
 
     <h2>LET'S CONNECT</h2>
 
     <p>
-      Let's connect, collaborate and create something meaningful.
+        Let's connect, collaborate and create something meaningful.
     </p>
 
-    <a
-      class="contact"
-      href="https://linkedin.com/in/mariam-khan-556249438/"
-      target="_blank"
-      rel="noopener"
-    >
-      CONNECT ON LINKEDIN ↗
+    <a class="contact"
+       href="https://linkedin.com/in/mariam-khan-556249438/"
+       target="_blank"
+       rel="noopener">
+       CONNECT ON LINKEDIN ↗
     </a>
 
-  </section>
+</section>
 
-  <footer>
+<!-- FOOTER -->
+
+<footer>
     © 2026 MARIAM KHAN · ALL RIGHTS RESERVED
-  </footer>
+</footer>
 
 </div>
 
-<script>
+<!-- SCROLL ANIMATION -->
 
-/* ================= PROJECT SCROLL ANIMATION ================= */
+<script>
 
 const projectCards = document.querySelectorAll('.project-card');
 
 if ('IntersectionObserver' in window) {
 
-  const projectObserver = new IntersectionObserver(
-    (entries) => {
+    const projectObserver = new IntersectionObserver(
+        (entries, observer) => {
 
-      entries.forEach(entry => {
+            entries.forEach(entry => {
 
-        if (entry.isIntersecting) {
+                if (entry.isIntersecting) {
 
-          entry.target.classList.add('visible');
+                    entry.target.classList.add('visible');
 
-          projectObserver.unobserve(entry.target);
+                    observer.unobserve(entry.target);
 
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
         }
+    );
 
-      });
-
-    },
-    {
-      threshold: 0.15
-    }
-  );
-
-  projectCards.forEach(card => {
-    projectObserver.observe(card);
-  });
+    projectCards.forEach(card => {
+        projectObserver.observe(card);
+    });
 
 } else {
 
-  projectCards.forEach(card => {
-    card.classList.add('visible');
-  });
+    projectCards.forEach(card => {
+        card.classList.add('visible');
+    });
 
 }
 
