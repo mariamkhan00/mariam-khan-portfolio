@@ -115,10 +115,11 @@ nav a.active {
   padding: 50px 0 38px;
 }
 
+/* --- GAP KAM KARNE AUR NAAM WAZEH KARNE KE LIYE YAHAN CHANGE KIYA HAI --- */
 .hero-title {
   position: absolute;
-  z-index: 1;
-  top: 18%;
+  z-index: 3; /* Naam image ke upar nazar aaye */
+  top: 14%; /* Gap kam karne ke liye 18% se 14% kiya */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -129,7 +130,8 @@ nav a.active {
   letter-spacing: .005em;
   font-weight: 400;
   white-space: nowrap;
-  color: #f0f2ed;
+  color: #ffffff; /* Naam zyada wazeh (white) kar diya */
+  text-shadow: 0 4px 20px rgba(0,0,0,0.6); /* Thori shadow taake image par wazeh ho */
   animation: titleIn 1s cubic-bezier(.2,.8,.2,1) both;
 }
 
@@ -698,7 +700,7 @@ footer {
   }
 
   .hero-title {
-    top: 20%;
+    top: 15%; /* Mobile ke liye bhi top adjust kiya */
     font-size: clamp(43px,10.4vw,76px);
     letter-spacing: 0;
   }
@@ -1185,7 +1187,3 @@ if ('IntersectionObserver' in window) {
 
 </body>
 </html>
-
-
-
-
