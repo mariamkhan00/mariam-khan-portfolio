@@ -1258,171 +1258,313 @@ footer {
   </section>
 
 
-<!-- ================= ABOUT ME ================= -->
 
-<section class="about-section" id="about">
+/* ================= PROJECT TO ABOUT TRANSITION ================= */
 
-    <!-- FLOATING DECORATIONS -->
-
-    <div class="about-decoration moon-icon">🌙</div>
-
-    <div class="about-decoration gift-icon">🎁</div>
-
-    <div class="about-decoration smile-icon">☺</div>
-
-    <div class="about-decoration cursor-icon">🖱</div>
-
-    <!-- ABOUT CONTENT -->
-
-    <div class="about-content">
-
-        <span class="small-label">
-            GET TO KNOW ME
-        </span>
-
-        <h2>ABOUT ME</h2>
-
-        <p>
-            I'm Mariam Khan, a Computer Science student at
-            QUEST University, Nawabshah. I enjoy creating
-            digital experiences, developing websites,
-            exploring technology and bringing creative
-            ideas to life.
-
-            From web development to digital art and
-            graphic design, I love learning new skills
-            and transforming imagination into reality.
-        </p>
-
-        <a
-            href="https://linkedin.com/in/mariam-khan-556249438/"
-            target="_blank"
-            rel="noopener"
-            class="about-contact"
-        >
-            CONTACT ME ↗
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- ================= CONTACT ================= -->
-
-<section class="contact-section" id="contact">
-
-    <span class="small-label">
-        HAVE A PROJECT IN MIND?
-    </span>
-
-    <h2>LET'S CONNECT</h2>
-
-    <p>
-        Let's connect, collaborate and create something meaningful.
-    </p>
-
-    <a
-        class="contact"
-        href="https://linkedin.com/in/mariam-khan-556249438/"
-        target="_blank"
-        rel="noopener"
-    >
-        CONNECT ON LINKEDIN ↗
-    </a>
-
-</section>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-    © 2026 MARIAM KHAN · ALL RIGHTS RESERVED
-</footer>
-
-</div>
-
-
-<!-- ================= JAVASCRIPT ================= -->
-
-<script>
-
-/* PROJECT SCROLL ANIMATION */
-
-const projectCards = document.querySelectorAll('.project-card');
-
-if ('IntersectionObserver' in window) {
-
-    const projectObserver = new IntersectionObserver(
-        (entries) => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add('visible');
-
-                    projectObserver.unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.15
-        }
-    );
-
-    projectCards.forEach(card => {
-        projectObserver.observe(card);
-    });
-
-} else {
-
-    projectCards.forEach(card => {
-        card.classList.add('visible');
-    });
-
+.projects-section {
+    position: relative;
+    overflow: hidden;
 }
 
+/* Fade at the bottom of projects */
 
-/* ABOUT ME SCROLL ANIMATION */
-
-const aboutSection = document.querySelector('.about-section');
-
-if ('IntersectionObserver' in window) {
-
-    const aboutObserver = new IntersectionObserver(
-        (entries) => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add('visible');
-
-                    aboutObserver.unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.2
-        }
+.projects-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 130px;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        #071516
     );
-
-    aboutObserver.observe(aboutSection);
-
-} else {
-
-    aboutSection.classList.add('visible');
-
 }
 
-</script>
+/* ================= ABOUT ME ================= */
+
+.about-section {
+    position: relative;
+    min-height: 100svh;
+    padding: 100px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        radial-gradient(ellipse at 50% 50%,
+        rgba(19,65,65,.48),
+        transparent 65%),
+        #071516;
+    border-top: 1px solid rgba(73,231,226,.08);
+    scroll-margin-top: 0;
+}
+
+/* Animated transition light */
+
+.about-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ed39d2,
+        #49e7e2,
+        transparent
+    );
+    box-shadow: 0 0 20px #49e7e2;
+    animation: transitionLight 5s ease-in-out infinite;
+}
+
+@keyframes transitionLight {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Background glow circles */
+
+.about-section .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.about-section .orb-one {
+    width: 230px;
+    height: 230px;
+    background: rgba(237,57,210,.12);
+    top: 10%;
+    left: 10%;
+}
+
+.about-section .orb-two {
+    width: 260px;
+    height: 260px;
+    background: rgba(73,231,226,.12);
+    bottom: 8%;
+    right: 10%;
+}
+
+/* Center content */
+
+.about-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 680px;
+    margin: auto;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(65px) scale(.97);
+    filter: blur(8px);
+    transition:
+        opacity 1s ease,
+        transform 1.1s cubic-bezier(.2,.8,.2,1),
+        filter 1s ease;
+}
+
+.about-section.visible .about-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.about-content h2 {
+    font-family: 'Anton', Impact, sans-serif;
+    font-size: clamp(65px,10vw,125px);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--white);
+    margin: 20px 0 28px;
+    text-shadow: 0 0 35px rgba(255,255,255,.08);
+}
+
+.about-content p {
+    max-width: 470px;
+    margin: auto;
+    color: #c0c9c5;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 2;
+    font-weight: 500;
+}
+
+/* Neon contact button */
+
+.about-contact {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 13px 30px;
+    border-radius: 50px;
+    color: white;
+    background: linear-gradient(110deg,#a51bd0,#f02ac6);
+    border: 1px solid rgba(255,255,255,.65);
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    box-shadow: 0 0 25px rgba(226,42,203,.3);
+    transition: .35s ease;
+}
+
+.about-contact:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 35px rgba(226,42,203,.7);
+}
+
+/* ================= UNIQUE FLOATING OBJECTS ================= */
+
+.about-object {
+    position: absolute;
+    z-index: 2;
+    width: 85px;
+    height: 85px;
+    pointer-events: none;
+    filter: drop-shadow(0 0 13px rgba(73,231,226,.4));
+    animation: objectFloat 5s ease-in-out infinite;
+}
+
+.about-object svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.about-object svg path,
+.about-object svg circle,
+.about-object svg rect,
+.about-object svg polygon,
+.about-object svg ellipse {
+    vector-effect: non-scaling-stroke;
+}
+
+/* Moon */
+
+.object-moon {
+    top: 13%;
+    left: 8%;
+    color: #49e7e2;
+}
+
+/* Crystal gift */
+
+.object-gift {
+    top: 14%;
+    right: 8%;
+    color: #ed39d2;
+    animation-delay: 1s;
+}
+
+/* Neon smile */
+
+.object-smile {
+    bottom: 12%;
+    left: 10%;
+    color: #ed80e8;
+    animation-delay: 2s;
+}
+
+/* Creative cursor */
+
+.object-cursor {
+    bottom: 14%;
+    right: 10%;
+    color: #9d9aff;
+    animation-delay: .7s;
+}
+
+/* Floating motion */
+
+@keyframes objectFloat {
+    0%,100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+    50% {
+        transform: translateY(-18px) rotate(5deg);
+    }
+}
+
+/* Small animated bars */
+
+.about-bars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 27px;
+}
+
+.about-bars span {
+    display: block;
+    width: 5px;
+    height: 15px;
+    border-radius: 10px;
+    background: linear-gradient(#ed39d2,#49e7e2);
+    animation: equalizer 1s ease-in-out infinite alternate;
+}
+
+.about-bars span:nth-child(2) { animation-delay: .2s; }
+.about-bars span:nth-child(3) { animation-delay: .4s; }
+.about-bars span:nth-child(4) { animation-delay: .6s; }
+.about-bars span:nth-child(5) { animation-delay: .8s; }
+
+@keyframes equalizer {
+    from { height: 6px; }
+    to { height: 25px; }
+}
+
+/* Mobile */
+
+@media(max-width:700px) {
+    .about-section {
+        min-height: 90svh;
+        padding: 90px 22px;
+    }
+
+    .about-content h2 {
+        font-size: clamp(58px,13vw,85px);
+    }
+
+    .about-content p {
+        font-size: 12px;
+        line-height: 1.9;
+    }
+
+    .about-object {
+        width: 52px;
+        height: 52px;
+    }
+
+    .object-moon { top: 9%; left: 5%; }
+    .object-gift { top: 10%; right: 5%; }
+    .object-smile { bottom: 7%; left: 5%; }
+    .object-cursor { bottom: 9%; right: 5%; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .about-section::before,
+    .about-object,
+    .about-bars span {
+        animation: none;
+    }
+
+    .about-content {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+    }
+}
+
 
 </body>
 </html>
