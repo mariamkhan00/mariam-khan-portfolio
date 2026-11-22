@@ -551,29 +551,205 @@ nav a.active {
 
 /* ================= ABOUT SECTION ================= */
 
+/* ================= ABOUT ME SECTION ================= */
+
 .about-section {
-  padding: 100px 0;
-  border-top: 1px solid rgba(255,255,255,.08);
-  scroll-margin-top: 20px;
+    position: relative;
+    min-height: 100svh;
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    isolation: isolate;
+    border-top: 1px solid rgba(255,255,255,.08);
+    scroll-margin-top: 0;
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(21,65,65,.38),
+            transparent 65%
+        );
 }
+
+/* ABOUT CONTENT */
 
 .about-content {
-  max-width: 850px;
-  margin: auto;
-  text-align: center;
+    position: relative;
+    z-index: 3;
+    max-width: 650px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(.2,.8,.2,1);
 }
+
+.about-section.visible .about-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MAIN HEADING */
 
 .about-content h2 {
-  font-family: 'Anton', Impact, sans-serif;
-  font-size: clamp(48px,8vw,90px);
-  font-weight: 400;
-  margin: 15px 0 25px;
+    font-family: 'Anton', Impact, sans-serif;
+    font-size: clamp(65px,10vw,125px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: .02em;
+    color: var(--white);
+    margin: 20px 0 30px;
 }
 
+/* DESCRIPTION */
+
 .about-content p {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 2;
+    max-width: 460px;
+    margin: auto;
+    color: #c0c9c5;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 2;
+    font-weight: 500;
+    letter-spacing: .015em;
+}
+
+/* ABOUT BUTTON */
+
+.about-contact {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 12px 27px;
+    border-radius: 50px;
+    color: white;
+    background: linear-gradient(110deg,#a51bd0,#f02ac6);
+    border: 1px solid rgba(255,255,255,.6);
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    box-shadow: 0 0 25px rgba(226,42,203,.3);
+    transition: .3s ease;
+}
+
+.about-contact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 35px rgba(226,42,203,.6);
+}
+
+/* FLOATING DECORATIVE ICONS */
+
+.about-decoration {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    animation: decorationFloat 5s ease-in-out infinite;
+}
+
+.moon-icon {
+    top: 12%;
+    left: 7%;
+    font-size: 55px;
+    filter: drop-shadow(0 0 15px #49e7e2);
+}
+
+.gift-icon {
+    top: 13%;
+    right: 8%;
+    font-size: 48px;
+    filter: drop-shadow(0 0 15px #ed39d2);
+    animation-delay: 1s;
+}
+
+.smile-icon {
+    bottom: 12%;
+    left: 10%;
+    font-size: 65px;
+    color: #ed80e8;
+    text-shadow: 0 0 20px #ed39d2;
+    animation-delay: 2s;
+}
+
+.cursor-icon {
+    bottom: 15%;
+    right: 10%;
+    font-size: 55px;
+    color: #a6a5ff;
+    filter: drop-shadow(0 0 15px #8c22ff);
+    animation-delay: .5s;
+}
+
+/* FLOATING ANIMATION */
+
+@keyframes decorationFloat {
+    0%,100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+/* MOBILE ABOUT */
+
+@media(max-width:700px) {
+
+    .about-section {
+        min-height: 90svh;
+        padding: 90px 22px;
+    }
+
+    .about-content h2 {
+        font-size: clamp(58px,13vw,85px);
+        margin: 20px 0;
+    }
+
+    .about-content p {
+        font-size: 12px;
+        line-height: 1.9;
+    }
+
+    .moon-icon {
+        top: 9%;
+        left: 5%;
+        font-size: 35px;
+    }
+
+    .gift-icon {
+        top: 10%;
+        right: 5%;
+        font-size: 32px;
+    }
+
+    .smile-icon {
+        bottom: 7%;
+        left: 5%;
+        font-size: 42px;
+    }
+
+    .cursor-icon {
+        bottom: 9%;
+        right: 5%;
+        font-size: 38px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .about-decoration {
+        animation: none;
+    }
+
+    .about-content {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 /* ================= CONTACT SECTION ================= */
@@ -1081,98 +1257,176 @@ footer {
 
   </section>
 
-  <!-- ABOUT ME -->
 
-  <section class="about-section" id="about">
+<!-- ================= ABOUT ME ================= -->
+
+<section class="about-section" id="about">
+
+    <!-- FLOATING DECORATIONS -->
+
+    <div class="about-decoration moon-icon">🌙</div>
+
+    <div class="about-decoration gift-icon">🎁</div>
+
+    <div class="about-decoration smile-icon">☺</div>
+
+    <div class="about-decoration cursor-icon">🖱</div>
+
+    <!-- ABOUT CONTENT -->
 
     <div class="about-content">
 
-      <span class="small-label">GET TO KNOW ME</span>
+        <span class="small-label">
+            GET TO KNOW ME
+        </span>
 
-      <h2>ABOUT ME</h2>
+        <h2>ABOUT ME</h2>
 
-      <p>
-        I'm Mariam Khan, a Computer Science student at
-        QUEST University, Nawabshah. I enjoy exploring technology,
-        developing websites, creating digital designs and turning
-        creative ideas into practical projects.
-      </p>
+        <p>
+            I'm Mariam Khan, a Computer Science student at
+            QUEST University, Nawabshah. I enjoy creating
+            digital experiences, developing websites,
+            exploring technology and bringing creative
+            ideas to life.
+
+            From web development to digital art and
+            graphic design, I love learning new skills
+            and transforming imagination into reality.
+        </p>
+
+        <a
+            href="https://linkedin.com/in/mariam-khan-556249438/"
+            target="_blank"
+            rel="noopener"
+            class="about-contact"
+        >
+            CONTACT ME ↗
+        </a>
 
     </div>
 
-  </section>
+</section>
 
-  <!-- CONTACT -->
 
-  <section class="contact-section" id="contact">
+<!-- ================= CONTACT ================= -->
 
-    <span class="small-label">HAVE A PROJECT IN MIND?</span>
+<section class="contact-section" id="contact">
+
+    <span class="small-label">
+        HAVE A PROJECT IN MIND?
+    </span>
 
     <h2>LET'S CONNECT</h2>
 
     <p>
-      Let's connect, collaborate and create something meaningful.
+        Let's connect, collaborate and create something meaningful.
     </p>
 
     <a
-      class="contact"
-      href="https://linkedin.com/in/mariam-khan-556249438/"
-      target="_blank"
-      rel="noopener"
+        class="contact"
+        href="https://linkedin.com/in/mariam-khan-556249438/"
+        target="_blank"
+        rel="noopener"
     >
-      CONNECT ON LINKEDIN ↗
+        CONNECT ON LINKEDIN ↗
     </a>
 
-  </section>
+</section>
 
-  <footer>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
     © 2026 MARIAM KHAN · ALL RIGHTS RESERVED
-  </footer>
+</footer>
 
 </div>
 
+
+<!-- ================= JAVASCRIPT ================= -->
+
 <script>
 
-/* ================= PROJECT SCROLL ANIMATION ================= */
+/* PROJECT SCROLL ANIMATION */
 
 const projectCards = document.querySelectorAll('.project-card');
 
 if ('IntersectionObserver' in window) {
 
-  const projectObserver = new IntersectionObserver(
-    (entries) => {
+    const projectObserver = new IntersectionObserver(
+        (entries) => {
 
-      entries.forEach(entry => {
+            entries.forEach(entry => {
 
-        if (entry.isIntersecting) {
+                if (entry.isIntersecting) {
 
-          entry.target.classList.add('visible');
+                    entry.target.classList.add('visible');
 
-          projectObserver.unobserve(entry.target);
+                    projectObserver.unobserve(entry.target);
 
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
         }
+    );
 
-      });
-
-    },
-    {
-      threshold: 0.15
-    }
-  );
-
-  projectCards.forEach(card => {
-    projectObserver.observe(card);
-  });
+    projectCards.forEach(card => {
+        projectObserver.observe(card);
+    });
 
 } else {
 
-  projectCards.forEach(card => {
-    card.classList.add('visible');
-  });
+    projectCards.forEach(card => {
+        card.classList.add('visible');
+    });
+
+}
+
+
+/* ABOUT ME SCROLL ANIMATION */
+
+const aboutSection = document.querySelector('.about-section');
+
+if ('IntersectionObserver' in window) {
+
+    const aboutObserver = new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add('visible');
+
+                    aboutObserver.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.2
+        }
+    );
+
+    aboutObserver.observe(aboutSection);
+
+} else {
+
+    aboutSection.classList.add('visible');
 
 }
 
 </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
