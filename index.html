@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#071516">
-<meta name="description" content="Mariam Khan — Computer Science Student, Developer and Creative Thinker.">
+<meta name="description" content="Mariam Khan - Computer Science Student, Developer and Creative Thinker.">
 
 <title>Mariam Khan | Portfolio</title>
 
@@ -16,604 +16,494 @@
 
 <style>
 :root {
-  --bg:#071516;
-  --white:#f4f5f1;
-  --muted:#a8b3b0;
-  --pink:#ed39d2;
-  --cyan:#49e7e2;
+    --bg:#071516;
+    --white:#f4f5f1;
+    --muted:#a8b3b0;
+    --pink:#ed39d2;
+    --cyan:#49e7e2;
 }
 
 * {
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html {
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body {
-  background:radial-gradient(ellipse at 50% 58%,#102c2c 0%,#091a1b 42%,#061112 100%);
-  color:var(--white);
-  font-family:'DM Sans',sans-serif;
-  overflow-x:hidden;
+    background:radial-gradient(ellipse at 50% 58%,#102c2c 0%,#091a1b 42%,#061112 100%);
+    color:var(--white);
+    font-family:'DM Sans',sans-serif;
+    overflow-x:hidden;
 }
 
 body:before {
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:.10;
-  background-image:
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.10;
+    background-image:
     linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-  background-size:48px 48px;
-  z-index:0;
+    background-size:48px 48px;
 }
 
 .site {
-  position:relative;
-  max-width:1600px;
-  margin:auto;
-  padding:0 clamp(22px,5vw,82px);
+    position:relative;
+    max-width:1600px;
+    margin:auto;
+    padding:0 clamp(22px,5vw,82px);
 }
 
-/* NAVIGATION */
-
 header {
-  height:88px;
-  display:flex;
-  align-items:center;
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  padding:0 clamp(22px,5vw,82px);
-  z-index:20;
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    z-index:10;
 }
 
 nav {
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 nav a {
-  font-size:10px;
-  letter-spacing:.13em;
-  font-weight:800;
-  text-transform:uppercase;
-  text-decoration:none;
-  color:#d9e0dc;
-  transition:.3s;
+    font-size:10px;
+    letter-spacing:.13em;
+    font-weight:800;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:#d9e0dc;
+    transition:.3s;
 }
 
 nav a:hover {
-  color:var(--pink);
+    color:var(--pink);
 }
 
-/* HOME PAGE */
+/* HOME */
 
 .hero {
-  position:relative;
-  min-height:100svh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  isolation:isolate;
-  padding:100px 0 38px;
+    position:relative;
+    min-height:calc(100svh - 75px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    isolation:isolate;
+    padding:30px 0 38px;
 }
 
 .hero-title {
-  position:absolute;
-  z-index:1;
-  top:36%;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  text-align:center;
-  font-family:'Anton',Impact,sans-serif;
-  font-size:clamp(62px,10.7vw,158px);
-  line-height:.92;
-  white-space:nowrap;
-  color:#f0f2ed;
-  animation:titleIn 1s both;
+    position:absolute;
+    z-index:1;
+    top:12%;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    text-align:center;
+    font-family:'Anton',Impact,sans-serif;
+    font-size:clamp(62px,10.7vw,158px);
+    line-height:.92;
+    letter-spacing:.005em;
+    white-space:nowrap;
+    color:#f0f2ed;
+    animation:titleIn 1s both;
 }
 
 .portrait-wrap {
-  position:absolute;
-  z-index:2;
-  left:50%;
-  bottom:-1%;
-  transform:translateX(-50%);
-  height:min(76vh,760px);
-  aspect-ratio:1103/1280;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  pointer-events:none;
-  animation:portraitIn 1.2s .12s both;
+    position:absolute;
+    z-index:2;
+    left:50%;
+    bottom:-1%;
+    transform:translateX(-50%);
+    height:min(76vh,760px);
+    aspect-ratio:1103/1280;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    pointer-events:none;
+    animation:portraitIn 1.2s .12s both;
 }
 
 .portrait-wrap:before {
-  content:"";
-  position:absolute;
-  bottom:3%;
-  width:78%;
-  height:26%;
-  border-radius:50%;
-  background:rgba(39,224,216,.18);
-  filter:blur(65px);
-  z-index:-1;
+    content:"";
+    position:absolute;
+    bottom:3%;
+    width:78%;
+    height:26%;
+    border-radius:50%;
+    background:rgba(39,224,216,.18);
+    filter:blur(65px);
+    z-index:-1;
 }
 
 .portrait {
-  height:100%;
-  width:100%;
-  object-fit:fill;
-  object-position:center bottom;
-  filter:drop-shadow(0 18px 35px rgba(0,0,0,.35));
-  animation:float 5s ease-in-out infinite;
-  transform-origin:50% 85%;
+    display:block;
+    height:100%;
+    width:100%;
+    object-fit:fill;
+    object-position:center bottom;
+    filter:drop-shadow(0 18px 35px rgba(0,0,0,.35));
+    animation:float 5s ease-in-out infinite;
+    transform-origin:50% 85%;
 }
 
 .side-copy {
-  position:absolute;
-  z-index:5;
-  left:0;
-  bottom:12%;
-  width:clamp(145px,17vw,230px);
-  font-size:clamp(10px,.9vw,13px);
-  line-height:1.65;
-  font-weight:700;
-  letter-spacing:.035em;
-  text-transform:uppercase;
+    position:absolute;
+    z-index:5;
+    left:0;
+    bottom:12%;
+    width:clamp(145px,17vw,230px);
+    font-size:clamp(10px,.9vw,13px);
+    line-height:1.65;
+    font-weight:700;
+    letter-spacing:.035em;
+    text-transform:uppercase;
 }
 
 .eyebrow {
-  display:block;
-  color:var(--cyan);
-  font-size:9px;
-  letter-spacing:.22em;
-  margin-bottom:13px;
+    display:block;
+    color:var(--cyan);
+    font-size:9px;
+    letter-spacing:.22em;
+    margin-bottom:13px;
 }
 
 .contact {
-  position:absolute;
-  right:0;
-  bottom:17%;
-  z-index:5;
-  text-decoration:none;
-  color:white;
-  background:linear-gradient(110deg,#a51bd0,#f02ac6);
-  border:1px solid rgba(255,255,255,.45);
-  border-radius:50px;
-  padding:12px 23px;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  box-shadow:0 0 24px rgba(226,42,203,.35);
-  transition:.3s;
+    position:absolute;
+    right:0;
+    bottom:17%;
+    z-index:5;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(110deg,#a51bd0,#f02ac6);
+    border:1px solid rgba(255,255,255,.45);
+    border-radius:50px;
+    padding:12px 23px;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    box-shadow:0 0 24px rgba(226,42,203,.35);
+    transition:.3s;
 }
 
 .contact:hover {
-  transform:translateY(-4px);
+    transform:translateY(-4px);
+    box-shadow:0 0 34px rgba(226,42,203,.65);
 }
 
 .scroll-note {
-  position:absolute;
-  bottom:26px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:9px;
-  letter-spacing:.25em;
-  color:#82908c;
-  text-transform:uppercase;
-  z-index:6;
-  display:flex;
-  align-items:center;
-  gap:12px;
+    position:absolute;
+    bottom:26px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:9px;
+    letter-spacing:.25em;
+    color:#82908c;
+    text-transform:uppercase;
+    z-index:6;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
 .scroll-note:before,
 .scroll-note:after {
-  content:"";
-  width:26px;
-  height:1px;
-  background:#52615d;
+    content:"";
+    width:26px;
+    height:1px;
+    background:#52615d;
 }
 
 .corner-mark {
-  position:absolute;
-  right:0;
-  top:17%;
-  font-size:9px;
-  letter-spacing:.16em;
-  color:#81908b;
-  writing-mode:vertical-rl;
-  text-transform:uppercase;
+    position:absolute;
+    right:0;
+    top:7%;
+    z-index:3;
+    font-size:9px;
+    letter-spacing:.16em;
+    color:#81908b;
+    writing-mode:vertical-rl;
+    text-transform:uppercase;
 }
 
 /* PROJECT SECTION */
 
 .projects {
-  position:relative;
-  min-height:100vh;
-  padding:130px 0 120px;
-  z-index:2;
-  border-top:1px solid rgba(255,255,255,.09);
+    position:relative;
+    padding:110px 0 130px;
+    min-height:100vh;
 }
 
-.projects-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  margin-bottom:65px;
+.section-top {
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:65px;
+    gap:20px;
 }
 
 .section-label {
-  color:var(--cyan);
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  margin-bottom:20px;
+    color:var(--cyan);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    margin-bottom:18px;
 }
 
-.projects-title {
-  font-family:'Anton',Impact,sans-serif;
-  font-size:clamp(65px,10vw,135px);
-  line-height:.9;
-  font-weight:400;
-  text-transform:uppercase;
+.section-title {
+    font-family:'Anton',Impact,sans-serif;
+    font-size:clamp(55px,9vw,115px);
+    line-height:.95;
+    text-transform:uppercase;
+    color:var(--white);
 }
 
-.projects-title span {
-  color:var(--cyan);
+.section-description {
+    max-width:280px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.8;
+    margin-bottom:8px;
 }
-
-.projects-description {
-  max-width:240px;
-  font-size:12px;
-  line-height:1.8;
-  color:var(--muted);
-  padding-bottom:8px;
-}
-
-/* PROJECT GRID */
 
 .project-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:35px;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:35px;
 }
 
 .project-card {
-  position:relative;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.13);
-  background:rgba(255,255,255,.025);
-  transition:transform .5s ease,border-color .5s ease;
+    position:relative;
+    min-width:0;
+    border:1px solid rgba(255,255,255,.13);
+    background:rgba(255,255,255,.035);
+    padding:15px;
+    border-radius:5px;
+    overflow:hidden;
+    transition:transform .45s ease,border-color .4s ease,background .4s ease;
+    opacity:0;
+    transform:translateY(45px);
+}
+
+.project-card.visible {
+    opacity:1;
+    transform:translateY(0);
 }
 
 .project-card:hover {
-  transform:translateY(-10px);
-  border-color:rgba(73,231,226,.65);
-}
-
-/* SQUARE IMAGE BOXES */
-
-.project-image {
-  position:relative;
-  width:100%;
-  aspect-ratio:1/1;
-  overflow:hidden;
-  background:#102324;
-}
-
-.project-image img {
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .8s cubic-bezier(.2,.8,.2,1);
-}
-
-.project-card:hover .project-image img {
-  transform:scale(1.06);
-}
-
-.image-overlay {
-  position:absolute;
-  inset:0;
-  background:linear-gradient(transparent 60%,rgba(3,12,13,.65));
-  pointer-events:none;
-}
-
-/* PROJECT CONTENT */
-
-.project-info {
-  padding:27px 27px 30px;
+    transform:translateY(-9px);
+    border-color:var(--cyan);
+    background:rgba(255,255,255,.06);
 }
 
 .project-number {
-  color:var(--cyan);
-  font-size:10px;
-  letter-spacing:.2em;
-  font-weight:800;
-  margin-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+    font-size:10px;
+    letter-spacing:.18em;
+    color:var(--cyan);
+    text-transform:uppercase;
+    font-weight:800;
 }
 
-.project-name {
-  font-family:'Anton',Impact,sans-serif;
-  font-size:clamp(30px,4vw,48px);
-  font-weight:400;
-  text-transform:uppercase;
-  line-height:1.05;
-  margin-bottom:15px;
+.project-image {
+    width:100%;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    background:#102323;
+    position:relative;
 }
 
-.project-text {
-  font-size:13px;
-  line-height:1.9;
-  color:#aab8b4;
-  margin-bottom:22px;
+.project-image img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .7s cubic-bezier(.2,.8,.2,1);
+}
+
+.project-card:hover .project-image img {
+    transform:scale(1.06);
+}
+
+.project-info {
+    padding:24px 7px 10px;
+}
+
+.project-info h3 {
+    font-family:'Anton',Impact,sans-serif;
+    font-size:clamp(25px,3.5vw,40px);
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:.025em;
+    margin-bottom:13px;
+}
+
+.project-info p {
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.9;
+    margin-bottom:20px;
 }
 
 .project-tags {
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin-bottom:27px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:22px;
 }
 
 .project-tags span {
-  border:1px solid rgba(73,231,226,.25);
-  padding:7px 11px;
-  font-size:9px;
-  letter-spacing:.07em;
-  color:#b9d8d4;
-  text-transform:uppercase;
-}
-
-/* ANIMATED FEATURE BARS */
-
-.feature-bars {
-  display:flex;
-  flex-direction:column;
-  gap:13px;
-  margin:20px 0 27px;
-}
-
-.feature-row {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-size:10px;
-  color:#bdc9c5;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-}
-
-.bar {
-  flex:1;
-  height:3px;
-  background:rgba(255,255,255,.10);
-  overflow:hidden;
-}
-
-.bar span {
-  display:block;
-  height:100%;
-  width:0;
-  background:linear-gradient(90deg,var(--cyan),var(--pink));
-  transition:width 1.4s cubic-bezier(.2,.8,.2,1);
-}
-
-.project-card.show .bar span {
-  width:var(--bar-width);
+    font-size:9px;
+    letter-spacing:.08em;
+    padding:7px 11px;
+    border:1px solid rgba(73,231,226,.25);
+    color:#a8e8e4;
+    border-radius:30px;
 }
 
 .project-link {
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  color:white;
-  text-decoration:none;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:.13em;
-  text-transform:uppercase;
-  border-bottom:1px solid var(--cyan);
-  padding-bottom:9px;
-  transition:.3s;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:white;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--pink);
+    padding-bottom:8px;
+    transition:.3s;
 }
 
 .project-link:hover {
-  color:var(--cyan);
-  gap:19px;
+    color:var(--pink);
+    gap:20px;
 }
 
-.project-link span {
-  font-size:17px;
+.project-bars {
+    display:flex;
+    gap:5px;
+    margin-top:55px;
 }
 
-/* PROJECT SECTION FOOTER */
-
-.project-bottom {
-  margin-top:90px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-top:1px solid rgba(255,255,255,.12);
-  padding-top:25px;
+.project-bars span {
+    height:3px;
+    flex:1;
+    background:rgba(255,255,255,.13);
+    transform-origin:left;
+    transition:background .5s;
 }
 
-.project-bottom p {
-  font-size:10px;
-  color:#879590;
-  letter-spacing:.15em;
-  text-transform:uppercase;
+.project-bars span:nth-child(2) {
+    background:var(--cyan);
+    flex:2;
 }
 
-.project-bottom span {
-  color:var(--cyan);
+.project-card:hover .project-bars span {
+    background:var(--pink);
+}
+
+/* FOOTER */
+
+footer {
+    padding:30px 0;
+    border-top:1px solid rgba(255,255,255,.12);
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    color:var(--muted);
+    font-size:10px;
+    letter-spacing:.08em;
 }
 
 /* ANIMATIONS */
 
 @keyframes float {
-  0%,100% {transform:translateY(0)}
-  50% {transform:translateY(-13px)}
+    0%,100% {transform:translateY(0) rotate(0deg)}
+    50% {transform:translateY(-13px) rotate(.6deg)}
 }
 
 @keyframes titleIn {
-  from {
-    opacity:0;
-    transform:translate(-50%,25px);
-    filter:blur(9px);
-  }
-  to {
-    opacity:1;
-    transform:translate(-50%,0);
-    filter:blur(0);
-  }
+    from {
+        opacity:0;
+        transform:translate(-50%,25px);
+        filter:blur(9px);
+    }
+    to {
+        opacity:1;
+        transform:translate(-50%,0);
+        filter:blur(0);
+    }
 }
 
 @keyframes portraitIn {
-  from {
-    opacity:0;
-    transform:translate(-50%,35px) scale(.94);
-  }
-  to {
-    opacity:1;
-    transform:translate(-50%,0) scale(1);
-  }
+    from {
+        opacity:0;
+        transform:translate(-50%,35px) scale(.94);
+    }
+    to {
+        opacity:1;
+        transform:translate(-50%,0) scale(1);
+    }
 }
-
-.reveal {
-  opacity:0;
-  transform:translateY(55px);
-  transition:opacity .9s ease,transform .9s ease;
-}
-
-.reveal.show {
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* RESPONSIVE */
 
 @media(max-width:700px) {
+    .site {padding:0 19px}
+    header {height:72px}
+    nav {gap:12px}
+    nav a {font-size:8px;letter-spacing:.06em}
+    .hero {min-height:calc(100svh - 73px)}
+    .hero-title {top:18%;font-size:clamp(43px,10.4vw,76px)}
+    .portrait-wrap {
+        width:min(94vw,490px);
+        height:auto;
+        aspect-ratio:1103/1280;
+        max-height:66vh;
+        bottom:7%;
+    }
+    .side-copy {
+        bottom:8%;
+        width:116px;
+        font-size:8px;
+    }
+    .eyebrow {font-size:7px;margin-bottom:7px}
+    .contact {bottom:10%;padding:10px 14px;font-size:8px}
+    .scroll-note {bottom:13px;font-size:7px}
+    .corner-mark {top:4%;font-size:7px}
 
-  .site {padding:0 19px}
-
-  header {
-    height:72px;
-    padding:0 19px;
-  }
-
-  nav {gap:12px}
-
-  nav a {
-    font-size:8px;
-    letter-spacing:.06em;
-  }
-
-  .hero {
-    min-height:100svh;
-    padding-bottom:50px;
-  }
-
-  .hero-title {
-    top:36%;
-    font-size:clamp(43px,10.4vw,76px);
-  }
-
-  .portrait-wrap {
-    width:min(94vw,490px);
-    height:auto;
-    max-height:66vh;
-    aspect-ratio:1103/1280;
-    bottom:7%;
-  }
-
-  .side-copy {
-    left:0;
-    bottom:8%;
-    width:116px;
-    font-size:8px;
-  }
-
-  .side-copy .eyebrow {
-    font-size:7px;
-    margin-bottom:7px;
-  }
-
-  .contact {
-    right:0;
-    bottom:10%;
-    padding:10px 14px;
-    font-size:8px;
-  }
-
-  .scroll-note {
-    bottom:13px;
-    font-size:7px;
-  }
-
-  .corner-mark {
-    top:17%;
-    font-size:7px;
-  }
-
-  .projects {
-    padding:100px 0 80px;
-  }
-
-  .projects-header {
-    display:block;
-    margin-bottom:40px;
-  }
-
-  .projects-title {
-    font-size:clamp(65px,15vw,95px);
-  }
-
-  .projects-description {
-    margin-top:22px;
-    max-width:300px;
-  }
-
-  .project-grid {
-    grid-template-columns:1fr;
-    gap:30px;
-  }
-
-  .project-info {
-    padding:23px 20px;
-  }
-
-  .project-name {
-    font-size:38px;
-  }
-
-  .project-bottom {
-    margin-top:55px;
-    gap:20px;
-  }
+    .projects {padding:80px 0}
+    .section-top {
+        align-items:flex-start;
+        flex-direction:column;
+        margin-bottom:35px;
+    }
+    .section-description {max-width:100%}
+    .project-grid {grid-template-columns:1fr;gap:25px}
+    .project-info h3 {font-size:32px}
+    footer {flex-direction:column}
 }
 
 @media(prefers-reduced-motion:reduce) {
-  *,*:before,*:after {
-    animation:none!important;
-    scroll-behavior:auto!important;
-    transition:none!important;
-  }
+    *,*:before,*:after {
+        animation:none!important;
+        scroll-behavior:auto!important;
+        transition:none!important;
+    }
 }
 </style>
 </head>
@@ -622,253 +512,200 @@ nav a:hover {
 
 <div class="site">
 
-<!-- NAVIGATION -->
-
 <header>
-<nav aria-label="Main navigation">
-  <a href="#home">Home</a>
-  <a href="#projects">Project</a>
-  <a href="#about">About Me</a>
-  <a href="https://linkedin.com/in/mariam-khan-556249438/" target="_blank" rel="noopener">Contact</a>
-</nav>
+    <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#projects">Project</a>
+        <a href="#about">About Me</a>
+        <a href="https://linkedin.com/in/mariam-khan-556249438/" target="_blank" rel="noopener">Contact</a>
+    </nav>
 </header>
 
-<!-- HOME -->
+<main>
 
-<main class="hero" id="home">
+<!-- HOME SECTION -->
 
-<h1 class="hero-title">HI, I'M MARIAM KHAN</h1>
+<section class="hero" id="home">
 
-<div class="corner-mark">
-Computer Science · Creative Technology
-</div>
+    <h1 class="hero-title">HI, I'M MARIAM KHAN</h1>
 
-<div class="portrait-wrap">
-  <img
-    class="portrait"
-    src="mariam_portfolio_picture-removebg-preview.png"
-    alt="Mariam's illustrated character">
-</div>
-
-<p class="side-copy">
-  <span class="eyebrow">A LITTLE ABOUT ME</span>
-  CREATING DIGITAL EXPERIENCES,
-  EXPLORING TECHNOLOGY AND
-  TURNING IDEAS INTO REALITY.
-</p>
-
-<a class="contact"
-   href="https://linkedin.com/in/mariam-khan-556249438/"
-   target="_blank" rel="noopener">
-   Let's connect ↗
-</a>
-
-<div class="scroll-note">Scroll to explore</div>
-
-</main>
-
-<!-- PROJECTS -->
-
-<section class="projects" id="projects">
-
-<div class="projects-header reveal">
-
-<div>
-  <p class="section-label">01 / SELECTED WORK</p>
-  <h2 class="projects-title">
-    MY <span>PROJECTS</span>
-  </h2>
-</div>
-
-<p class="projects-description">
-  Turning ideas into digital experiences.
-  Explore the projects I have designed and developed.
-</p>
-
-</div>
-
-<div class="project-grid">
-
-<!-- PROJECT 01: EDUPLUS -->
-
-<article class="project-card reveal">
-
-<div class="project-image">
-  <img
-    src="eduplus%20system.jpeg"
-    alt="EduPlus Smart School Management System"
-    loading="lazy">
-  <div class="image-overlay"></div>
-</div>
-
-<div class="project-info">
-
-<p class="project-number">PROJECT / 001</p>
-
-<h3 class="project-name">
-  EDUPLUS
-</h3>
-
-<p class="project-text">
-  A Smart Teacher Substitute & Absentee Management System
-  designed for schools, colleges and universities.
-  EduPlus helps educational institutions manage teacher
-  absences, find suitable substitute teachers and distribute
-  workloads efficiently.
-</p>
-
-<div class="project-tags">
-  <span>HTML</span>
-  <span>CSS</span>
-  <span>JavaScript</span>
-  <span>Bootstrap 5</span>
-  <span>Google Apps Script</span>
-  <span>Google Sheets</span>
-</div>
-
-<div class="feature-bars">
-
-  <div class="feature-row">
-    <span>Smart Substitution</span>
-    <div class="bar">
-      <span style="--bar-width:95%"></span>
+    <div class="corner-mark">
+        Computer Science · Creative Technology
     </div>
-  </div>
 
-  <div class="feature-row">
-    <span>Workload Management</span>
-    <div class="bar">
-      <span style="--bar-width:88%"></span>
+    <div class="portrait-wrap">
+        <img
+        class="portrait"
+        src="mariam_portfolio_picture-removebg-preview.png"
+        alt="Mariam Khan 3D illustrated portrait">
     </div>
-  </div>
 
-  <div class="feature-row">
-    <span>Analytics Dashboard</span>
-    <div class="bar">
-      <span style="--bar-width:90%"></span>
-    </div>
-  </div>
+    <p class="side-copy">
+        <span class="eyebrow">A LITTLE ABOUT ME</span>
+        CREATING DIGITAL EXPERIENCES,
+        EXPLORING TECHNOLOGY AND
+        TURNING IDEAS INTO REALITY.
+    </p>
 
-</div>
+    <a class="contact"
+    href="https://linkedin.com/in/mariam-khan-556249438/"
+    target="_blank" rel="noopener">
+        Let's Connect ↗
+    </a>
 
-<a class="project-link"
-   href="https://mariamkhan00.github.io/eduplus-system/"
-   target="_blank" rel="noopener">
-   EXPLORE PROJECT <span>↗</span>
-</a>
-
-</div>
-</article>
-
-
-<!-- PROJECT 02: QUEST PORTAL -->
-
-<article class="project-card reveal">
-
-<div class="project-image">
-  <img
-    src="cybersecurity%20department%20portal.jpeg"
-    alt="QUEST Cyber Security Department Portal"
-    loading="lazy">
-  <div class="image-overlay"></div>
-</div>
-
-<div class="project-info">
-
-<p class="project-number">PROJECT / 002</p>
-
-<h3 class="project-name">
-  QUEST DEPARTMENT PORTAL
-</h3>
-
-<p class="project-text">
-  A complete department information portal for
-  Quaid-e-Awam University of Engineering, Science
-  & Technology, Nawabshah. The portal provides
-  academic information and resources for four batches.
-</p>
-
-<div class="project-tags">
-  <span>HTML</span>
-  <span>CSS</span>
-  <span>JavaScript</span>
-  <span>Bootstrap</span>
-  <span>Responsive Design</span>
-</div>
-
-<div class="feature-bars">
-
-  <div class="feature-row">
-    <span>4 Academic Batches</span>
-    <div class="bar">
-      <span style="--bar-width:100%"></span>
-    </div>
-  </div>
-
-  <div class="feature-row">
-    <span>6 Class Timetables</span>
-    <div class="bar">
-      <span style="--bar-width:95%"></span>
-    </div>
-  </div>
-
-  <div class="feature-row">
-    <span>Live Timetable</span>
-    <div class="bar">
-      <span style="--bar-width:100%"></span>
-    </div>
-  </div>
-
-</div>
-
-<a class="project-link"
-   href="https://mariamkhan00.github.io/cybersecurity-departmentportal/"
-   target="_blank" rel="noopener">
-   EXPLORE PORTAL <span>↗</span>
-</a>
-
-</div>
-</article>
-
-</div>
-
-<div class="project-bottom reveal">
-  <p>DESIGNED & DEVELOPED WITH <span>CREATIVITY</span></p>
-  <p>02 — <span>PROJECTS</span></p>
-</div>
+    <div class="scroll-note">Scroll to explore</div>
 
 </section>
 
+
+<!-- PROJECTS SECTION -->
+
+<section class="projects" id="projects">
+
+    <div class="section-top">
+        <div>
+            <div class="section-label">01 — SELECTED WORK</div>
+            <h2 class="section-title">MY PROJECTS</h2>
+        </div>
+
+        <p class="section-description">
+            Ideas transformed into digital experiences.
+            Explore my work, creativity and development journey.
+        </p>
+    </div>
+
+    <div class="project-grid">
+
+        <!-- PROJECT ONE: EDUPLUS -->
+
+        <article class="project-card">
+
+            <div class="project-number">
+                <span>PROJECT 01</span>
+                <span>2026</span>
+            </div>
+
+            <div class="project-image">
+                <img
+                src="eduplus system.jpeg"
+                alt="EduPlus Smart School Management System">
+            </div>
+
+            <div class="project-info">
+
+                <h3>EDUPLUS</h3>
+
+                <p>
+                    A smart, cloud-based Teacher Substitute and
+                    Absentee Management System designed for schools,
+                    colleges and universities. It helps automate
+                    teacher substitutions and manage daily operations.
+                </p>
+
+                <div class="project-tags">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JAVASCRIPT</span>
+                    <span>GOOGLE APPS SCRIPT</span>
+                    <span>GOOGLE SHEETS</span>
+                </div>
+
+                <a class="project-link"
+                href="https://mariamkhan00.github.io/eduplus-system/"
+                target="_blank" rel="noopener">
+                    Explore Project ↗
+                </a>
+
+            </div>
+
+            <div class="project-bars">
+                <span></span><span></span><span></span>
+                <span></span><span></span>
+            </div>
+
+        </article>
+
+
+        <!-- PROJECT TWO: QUEST PORTAL -->
+
+        <article class="project-card">
+
+            <div class="project-number">
+                <span>PROJECT 02</span>
+                <span>2026</span>
+            </div>
+
+            <div class="project-image">
+                <img
+                src="cybersecurity department portal.jpeg"
+                alt="QUEST Cybersecurity Department Portal">
+            </div>
+
+            <div class="project-info">
+
+                <h3>QUEST DEPARTMENT PORTAL</h3>
+
+                <p>
+                    A dedicated department portal for QUEST University,
+                    Nawabshah. It provides information for 4 student
+                    batches, 6 timetables and a live timetable system
+                    connected with Google Sheets.
+                </p>
+
+                <div class="project-tags">
+                    <span>4 BATCHES</span>
+                    <span>6 TIMETABLES</span>
+                    <span>LIVE TIMETABLE</span>
+                    <span>WEB DEVELOPMENT</span>
+                </div>
+
+                <a class="project-link"
+                href="https://mariamkhan00.github.io/cybersecurity-departmentportal/"
+                target="_blank" rel="noopener">
+                    Explore Portal ↗
+                </a>
+
+            </div>
+
+            <div class="project-bars">
+                <span></span><span></span><span></span>
+                <span></span><span></span>
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <span>© 2026 MARIAM KHAN</span>
+    <span>COMPUTER SCIENCE · CREATIVE TECHNOLOGY</span>
+</footer>
+
 </div>
 
-<!-- SCROLL ANIMATIONS -->
 
 <script>
 
-const revealObserver = new IntersectionObserver((entries) => {
+// Smooth project reveal animation
 
-  entries.forEach(entry => {
+const cards = document.querySelectorAll('.project-card');
 
-    if(entry.isIntersecting) {
-
-      entry.target.classList.add('show');
-
-      if(entry.target.classList.contains('project-card')) {
-        entry.target.classList.add('show');
-      }
-
-      revealObserver.unobserve(entry.target);
-    }
-
-  });
-
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
 }, {
-  threshold:0.15
+    threshold: 0.12
 });
 
-document.querySelectorAll('.reveal, .project-card').forEach(element => {
-  revealObserver.observe(element);
-});
+cards.forEach(card => observer.observe(card));
 
 </script>
 
