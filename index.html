@@ -23,9 +23,9 @@
     .hero{position:relative;flex:1;min-height:calc(100svh - 89px);display:flex;align-items:center;justify-content:center;isolation:isolate;padding:50px 0 38px}
     /* One single name line, layered behind the portrait like the reference. */
     .hero-title{position:absolute;z-index:1;top:18%;left:50%;transform:translateX(-50%);width:100%;text-align:center;font-family:'Anton',Impact,sans-serif;font-size:clamp(62px,10.7vw,158px);line-height:.92;letter-spacing:.005em;font-weight:400;white-space:nowrap;color:#f0f2ed;animation:titleIn 1s cubic-bezier(.2,.8,.2,1) both}
-    .portrait-wrap{position:absolute;z-index:2;left:50%;bottom:-1%;transform:translateX(-50%);height:min(76vh,760px);width:min(57vw,620px);display:flex;align-items:flex-end;justify-content:center;pointer-events:none;animation:portraitIn 1.2s .12s cubic-bezier(.2,.8,.2,1) both}
+    .portrait-wrap{position:absolute;z-index:2;left:50%;bottom:-1%;transform:translateX(-50%);height:min(76vh,760px);width:auto;aspect-ratio:1103/1280;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;animation:portraitIn 1.2s .12s cubic-bezier(.2,.8,.2,1) both}
     .portrait-wrap:before{content:"";position:absolute;bottom:3%;width:78%;height:26%;border-radius:50%;background:rgba(39,224,216,.18);filter:blur(65px);z-index:-1}
-    .portrait{height:100%;width:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 18px 35px rgba(0,0,0,.35));animation:float 5s ease-in-out infinite;transform-origin:50% 85%}
+    .portrait{display:block;height:100%;width:100%;object-fit:fill;object-position:center bottom;filter:drop-shadow(0 18px 35px rgba(0,0,0,.35));animation:float 5s ease-in-out infinite;transform-origin:50% 85%}
     /* Eye-follow overlay: pupils are positioned over the illustrated eyes and follow pointer movement. */
     .eye{position:absolute;z-index:4;width:4.25%;aspect-ratio:1;border-radius:50%;pointer-events:none;top:31.9%;display:grid;place-items:center;transform:translate(-50%,-50%)}
     .eye.left{left:36.4%}.eye.right{left:56.6%}
@@ -43,8 +43,8 @@
     @keyframes portraitIn{from{opacity:0;transform:translate(-50%,35px) scale(.94)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:700px){
-      .site{padding:0 19px}header{height:72px}nav{justify-content:space-between;gap:12px}nav a{font-size:8px;letter-spacing:.06em}.hero{min-height:calc(100svh - 73px);padding-bottom:50px}.hero-title{top:20%;font-size:clamp(43px,10.4vw,76px);letter-spacing:0}.portrait-wrap{width:min(94vw,490px);height:66vh;bottom:7%}.eye{top:32.2%;width:4.2%}.side-copy{left:0;bottom:8%;width:116px;font-size:8px;line-height:1.55}.side-copy .eyebrow{font-size:7px;margin-bottom:7px}.contact{right:0;bottom:10%;padding:10px 14px;font-size:8px}.scroll-note{bottom:13px;font-size:7px}.corner-mark{top:4%;font-size:7px}}
-    @media(max-width:390px){nav{gap:8px}nav a{font-size:7px}.hero-title{font-size:9.8vw}.portrait-wrap{height:61vh}.side-copy{width:100px}.contact{padding:9px 11px}}
+      .site{padding:0 19px}header{height:72px}nav{justify-content:space-between;gap:12px}nav a{font-size:8px;letter-spacing:.06em}.hero{min-height:calc(100svh - 73px);padding-bottom:50px}.hero-title{top:20%;font-size:clamp(43px,10.4vw,76px);letter-spacing:0}.portrait-wrap{width:min(94vw,490px);height:auto;aspect-ratio:1103/1280;max-height:66vh;bottom:7%}.eye{width:5.5%;height:7%}.side-copy{left:0;bottom:8%;width:116px;font-size:8px;line-height:1.55}.side-copy .eyebrow{font-size:7px;margin-bottom:7px}.contact{right:0;bottom:10%;padding:10px 14px;font-size:8px}.scroll-note{bottom:13px;font-size:7px}.corner-mark{top:4%;font-size:7px}}
+    @media(max-width:390px){nav{gap:8px}nav a{font-size:7px}.hero-title{font-size:9.8vw}.portrait-wrap{height:auto;max-height:61vh}.side-copy{width:100px}.contact{padding:9px 11px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
@@ -78,10 +78,10 @@
     function moveEyes(clientX, clientY){
       const r = wrap.getBoundingClientRect();
       const cx = r.left + r.width * .465;
-      const cy = r.top + r.height * .32;
-      const dx = Math.max(-1, Math.min(1, (clientX-cx)/(window.innerWidth*.34)));
-      const dy = Math.max(-1, Math.min(1, (clientY-cy)/(window.innerHeight*.38)));
-      const tx = dx * 5.5, ty = dy * 4.2;
+      const cy = r.top + r.height * .365;
+      const dx = Math.max(-1, Math.min(1, (clientX-cx)/(window.innerWidth*.30)));
+      const dy = Math.max(-1, Math.min(1, (clientY-cy)/(window.innerHeight*.32)));
+      const tx = dx * 3.2, ty = dy * 2.6;
       pupils.forEach(p => p.style.transform = `translate(${tx}px, ${ty}px)`);
     }
     if (window.matchMedia('(pointer:fine)').matches) {
