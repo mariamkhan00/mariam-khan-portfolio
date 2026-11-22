@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#071516" />
+  <meta name="description" content="Mariam Khan — Computer Science student, developer and creative thinker." />
+  <title>Mariam Khan | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#071516;--white:#f4f5f1;--muted:#a8b3b0;--pink:#ed39d2;--cyan:#49e7e2}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{min-height:100vh;background:radial-gradient(ellipse at 50% 58%,#102c2c 0%,#091a1b 42%,#061112 100%);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
+    .site{position:relative;min-height:100svh;max-width:1600px;margin:auto;padding:0 clamp(22px,5vw,82px);display:flex;flex-direction:column}
+    header{height:88px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:10}
+    .brand{display:none}
+    nav{display:flex;gap:clamp(22px,5vw,76px);align-items:center;margin-left:auto}
+    nav a{font-size:10px;letter-spacing:.12em;font-weight:800;text-transform:uppercase;text-decoration:none;color:#d9e0dc;transition:color .25s}
+    nav a:hover{color:var(--pink)}
+    .hero{position:relative;flex:1;min-height:calc(100svh - 89px);display:flex;align-items:center;justify-content:center;isolation:isolate;padding:50px 0 38px}
+    .hero-title{position:absolute;z-index:1;top:12%;left:50%;transform:translateX(-50%);width:100%;text-align:center;font-size:clamp(54px,10.4vw,158px);line-height:.9;letter-spacing:-.085em;font-weight:900;white-space:nowrap;color:#f0f2ed;animation:titleIn 1s cubic-bezier(.2,.8,.2,1) both}
+        .portrait-wrap{position:absolute;z-index:2;left:50%;bottom:-1%;transform:translateX(-50%);height:min(76vh,760px);width:min(57vw,620px);display:flex;align-items:flex-end;justify-content:center;pointer-events:none;animation:portraitIn 1.2s .12s cubic-bezier(.2,.8,.2,1) both}
+    .portrait-wrap:before{content:"";position:absolute;bottom:3%;width:78%;height:26%;border-radius:50%;background:rgba(39,224,216,.18);filter:blur(65px);z-index:-1}
+    .portrait{height:100%;width:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 18px 35px rgba(0,0,0,.35));animation:float 5s ease-in-out infinite;transform-origin:50% 85%}
+    .side-copy{position:absolute;z-index:4;left:0;bottom:12%;width:clamp(145px,17vw,230px);font-size:clamp(10px,.9vw,13px);line-height:1.65;font-weight:700;letter-spacing:.035em;text-transform:uppercase;color:#e4e9e5;animation:fadeUp .9s .55s both}
+    .side-copy .eyebrow{display:block;color:var(--cyan);font-size:9px;letter-spacing:.22em;margin-bottom:13px}
+    .contact{position:absolute;right:0;bottom:17%;z-index:5;text-decoration:none;color:white;background:linear-gradient(110deg,#a51bd0,#f02ac6);border:1px solid rgba(255,255,255,.45);border-radius:50px;padding:12px 23px;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 0 24px rgba(226,42,203,.35);transition:transform .25s,box-shadow .25s;animation:fadeUp .9s .7s both}
+    .contact:hover{transform:translateY(-4px);box-shadow:0 0 34px rgba(226,42,203,.65)}
+    .scroll-note{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.25em;color:#82908c;text-transform:uppercase;z-index:6;display:flex;align-items:center;gap:12px}
+    .scroll-note:before,.scroll-note:after{content:"";width:26px;height:1px;background:#52615d}
+    .corner-mark{position:absolute;right:0;top:7%;z-index:3;font-size:9px;letter-spacing:.16em;color:#81908b;writing-mode:vertical-rl;text-transform:uppercase}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-13px) rotate(.6deg)}}
+    @keyframes titleIn{from{opacity:0;transform:translate(-50%,25px);filter:blur(9px)}to{opacity:1;transform:translate(-50%,0);filter:blur(0)}}
+    @keyframes portraitIn{from{opacity:0;transform:translate(-50%,35px) scale(.94)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:700px){
+      .site{padding:0 19px}header{height:72px}.brand{font-size:11px}nav{gap:15px}nav a{font-size:8px;letter-spacing:.06em}.hero{min-height:calc(100svh - 73px);padding-bottom:50px}.hero-title{top:17%;font-size:clamp(48px,12vw,82px);letter-spacing:-.09em}.portrait-wrap{width:min(94vw,490px);height:66vh;bottom:7%;}.side-copy{left:0;bottom:8%;width:116px;font-size:8px;line-height:1.55}.side-copy .eyebrow{font-size:7px;margin-bottom:7px}.contact{right:0;bottom:10%;padding:10px 14px;font-size:8px}.scroll-note{bottom:13px;font-size:7px}.corner-mark{top:4%;font-size:7px}}
+    @media(max-width:390px){nav{gap:10px}nav a{font-size:7px}.hero-title{font-size:12vw}.portrait-wrap{height:61vh}.side-copy{width:100px}.contact{padding:9px 11px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#projects" onclick="comingSoon(event,'Projects')">Project</a>
+        <a href="#about" onclick="comingSoon(event,'About me')">About me</a>
+        <a href="https://linkedin.com/in/mariam-khan-556249438/" target="_blank" rel="noopener">Contact</a>
+      </nav>
+    </header>
+
+    <main class="hero" id="home">
+      <div class="hero-title" aria-label="Hi, I'm Mariam">HI, I'M MARIAM</div>
+      <div class="corner-mark">Computer Science · Creative Technology</div>
+      <div class="portrait-wrap">
+        <img class="portrait" src="https://raw.githubusercontent.com/mariamkhan00/mariam-khan-portfolio/main/mariam%20portfolio%20picture.jpeg" alt="3D illustrated portrait of Mariam" />
+      </div>
+      <p class="side-copy"><span class="eyebrow">A LITTLE ABOUT ME</span>CREATING DIGITAL EXPERIENCES, EXPLORING TECHNOLOGY AND TURNING IDEAS INTO REALITY.</p>
+      <a class="contact" href="https://linkedin.com/in/mariam-khan-556249438/" target="_blank" rel="noopener">Let's connect ↗</a>
+      <div class="scroll-note">Scroll to explore</div>
+    </main>
+  </div>
+  <script>
+    function comingSoon(event, section){
+      event.preventDefault();
+      alert(section + ' section is coming next. For now, this is the homepage preview.');
+    }
+    // Gentle pointer parallax on larger screens; the portrait remains accessible on touch devices.
+    const portrait = document.querySelector('.portrait');
+    if (window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.addEventListener('pointermove', (event) => {
+        const x = (event.clientX / window.innerWidth - .5) * 5;
+        const y = (event.clientY / window.innerHeight - .5) * 4;
+        portrait.style.filter = `drop-shadow(${x}px ${18+y}px 35px rgba(0,0,0,.35))`;
+      }, {passive:true});
+    }
+  </script>
+</body>
+</html>
