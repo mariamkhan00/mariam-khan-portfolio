@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +10,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- GSAP Animation Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <style>
 :root {
@@ -19,6 +21,8 @@
     --muted: #a8b3b0;
     --pink: #ed39d2;
     --cyan: #49e7e2;
+    --font-head: 'Anton', Impact, sans-serif;
+    --font-body: 'DM Sans', sans-serif;
 }
 
 * {
@@ -35,7 +39,7 @@ body {
     min-height: 100vh;
     background: radial-gradient(ellipse at 50% 58%, #102c2c 0%, #091a1b 42%, #061112 100%);
     color: var(--white);
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-body);
     overflow-x: hidden;
 }
 
@@ -59,13 +63,12 @@ body::before {
     max-width: 1600px;
     margin: auto;
     padding: 0 clamp(22px,5vw,82px);
+    z-index: 1;
 }
 
-
 /* ================= NAVIGATION ================= */
-
 header {
-  height: 72px;
+    height: 80px;
     display: flex;
     align-items: center;
     position: relative;
@@ -73,464 +76,432 @@ header {
 }
 
 nav {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav a {
- font-size: 10px;
-  letter-spacing: .13em;
-  font-weight: 800;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #d9e0dc;
-  transition: color .25s;
+    font-size: 11px;
+    letter-spacing: .15em;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color .3s, transform .3s;
 }
 
-nav a:hover,
-nav a.active {
-  color: var(--pink);
+nav a:hover, nav a.active {
+    color: var(--cyan);
+    transform: translateY(-2px);
 }
 
 /* ================= HOME PAGE ================= */
-
 .hero {
-  position: relative;
-  min-height: calc(100svh - 72px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  isolation: isolate;
-  padding: 10px 0 38px;
+    position: relative;
+    min-height: calc(100svh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+    padding: 20px 0 50px;
 }
 
 .hero-title {
-  position: absolute;
-  z-index: 1;
-  top: 12%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  text-align: center;
-  font-family: 'Anton', Impact, sans-serif;
-  font-size: clamp(62px,10.7vw,158px);
-  line-height: .92;
-  letter-spacing: .005em;
-  font-weight: 400;
-  white-space: nowrap;
-  color: #f0f2ed;
-  animation: titleIn 1s cubic-bezier(.2,.8,.2,1) both;
+    position: absolute;
+    z-index: 1;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-head);
+    font-size: clamp(62px, 11vw, 165px);
+    line-height: .92;
+    letter-spacing: .01em;
+    font-weight: 400;
+    white-space: nowrap;
+    color: #f0f2ed;
 }
 
 .portrait-wrap {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  bottom: -1%;
-  transform: translateX(-50%);
-  height: min(76vh,760px);
-  width: auto;
-  aspect-ratio: 1103/1280;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  pointer-events: none;
-  animation: portraitIn 1.2s .12s cubic-bezier(.2,.8,.2,1) both;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: -1%;
+    transform: translateX(-50%);
+    height: min(80vh, 800px);
+    width: auto;
+    aspect-ratio: 1103/1280;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: none;
+    perspective: 1000px; /* 3D Effect ke liye */
 }
 
-.portrait-wrap:before {
-  content: "";
-  position: absolute;
-  bottom: 3%;
-  width: 78%;
-  height: 26%;
-  border-radius: 50%;
-  background: rgba(39,224,216,.18);
-  filter: blur(65px);
-  z-index: -1;
+.portrait-wrap::before {
+    content: "";
+    position: absolute;
+    bottom: 5%;
+    width: 70%;
+    height: 20%;
+    border-radius: 50%;
+    background: rgba(73,231,226,.25);
+    filter: blur(80px);
+    z-index: -1;
 }
 
 .portrait {
-  display: block;
-  height: 100%;
-  width: 100%;
-  object-fit: fill;
-  object-position: center bottom;
-  filter: drop-shadow(0 18px 35px rgba(0,0,0,.35));
-  animation: float 5s ease-in-out infinite;
-  transform-origin: 50% 85%;
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+    object-position: center bottom;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,.5));
+    animation: float 6s ease-in-out infinite;
+    transform-origin: 50% 90%;
+    transition: transform 0.1s ease-out; /* Mouse tilt smoothness */
 }
 
 .side-copy {
-  position: absolute;
-  z-index: 5;
-  left: 0;
-  bottom: 12%;
-  width: clamp(145px,17vw,230px);
-  font-size: clamp(10px,.9vw,13px);
-  line-height: 1.65;
-  font-weight: 700;
-  letter-spacing: .035em;
-  text-transform: uppercase;
-  color: #e4e9e5;
-  animation: fadeUp .9s .55s both;
+    position: absolute;
+    z-index: 5;
+    left: 0;
+    bottom: 12%;
+    width: clamp(145px, 17vw, 230px);
+    font-size: clamp(10px, .9vw, 13px);
+    line-height: 1.65;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: #e4e9e5;
 }
 
 .side-copy .eyebrow {
-  display: block;
-  color: var(--cyan);
-  font-size: 9px;
-  letter-spacing: .22em;
-  margin-bottom: 13px;
+    display: block;
+    color: var(--cyan);
+    font-size: 9px;
+    letter-spacing: .25em;
+    margin-bottom: 15px;
 }
 
 .contact {
-  position: absolute;
-  right: 0;
-  bottom: 17%;
-  z-index: 5;
-  text-decoration: none;
-  color: white;
-  background: linear-gradient(110deg,#a51bd0,#f02ac6);
-  border: 1px solid rgba(255,255,255,.45);
-  border-radius: 50px;
-  padding: 12px 23px;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  box-shadow: 0 0 24px rgba(226,42,203,.35);
-  transition: transform .25s,box-shadow .25s;
-  animation: fadeUp .9s .7s both;
+    position: absolute;
+    right: 0;
+    bottom: 17%;
+    z-index: 5;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(110deg, #a51bd0, #f02ac6);
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 50px;
+    padding: 14px 28px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    box-shadow: 0 0 30px rgba(226,42,203,.4);
+    transition: transform .3s, box-shadow .3s;
 }
 
 .contact:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 34px rgba(226,42,203,.65);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 40px rgba(226,42,203,.8);
 }
 
 .scroll-note {
-  position: absolute;
-  bottom: 26px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 9px;
-  letter-spacing: .25em;
-  color: #82908c;
-  text-transform: uppercase;
-  z-index: 6;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  white-space: nowrap;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    letter-spacing: .3em;
+    color: #82908c;
+    text-transform: uppercase;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    white-space: nowrap;
 }
 
-.scroll-note:before,
-.scroll-note:after {
-  content: "";
-  width: 26px;
-  height: 1px;
-  background: #52615d;
+.scroll-note::before, .scroll-note::after {
+    content: "";
+    width: 30px;
+    height: 1px;
+    background: #52615d;
 }
 
 .corner-mark {
-  position: absolute;
-  right: 0;
-  top: 7%;
-  z-index: 3;
-  font-size: 9px;
-  letter-spacing: .16em;
-  color: #81908b;
-  writing-mode: vertical-rl;
-  text-transform: uppercase;
+    position: absolute;
+    right: 0;
+    top: 7%;
+    z-index: 3;
+    font-size: 10px;
+    letter-spacing: .2em;
+    color: #81908b;
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
 }
 
-<!-- ================= PROJECTS ================= -->
-
-    <section class="projects-section" id="projects">
-
-        <div class="projects-heading">
-
-            <span class="small-label">
-                WHAT I'VE CREATED
-            </span>
-
-            <h2>MY PROJECTS</h2>
-
-            <p>
-                Ideas transformed into real-world digital experiences.
-            </p>
-
-        </div>
-
-        <!-- PROJECT 01 -->
-
-        <article class="project-card">
-
-            <div class="project-top">
-
-                <div class="project-number">01</div>
-
-                <div class="project-heading-text">
-
-                    <div class="project-category">
-                        EDUCATION TECHNOLOGY
-                    </div>
-
-                    <h3>
-                        EduPlus – Smart Substitute System
-                    </h3>
-
-                </div>
-
-                <a
-                    class="live-project"
-                    href="https://mariamkhan00.github.io/eduplus-system/"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    LIVE PROJECT ↗
-                </a>
-
-            </div>
-
-            <div class="project-preview">
-
-                <div class="preview-panel dark">
-
-                    <div class="preview-topbar">
-                        <span class="preview-dot"></span>
-                        <span class="preview-dot"></span>
-                        <span class="preview-dot"></span>
-                    </div>
-
-                    <div class="preview-content">
-
-                        <h4>EduPlus Dashboard</h4>
-                        <p>Smart Teacher Management</p>
-
-                        <div class="preview-stats">
-
-                            <div class="preview-stat">
-                                <strong>01</strong>
-                                Teachers
-                            </div>
-
-                            <div class="preview-stat">
-                                <strong>02</strong>
-                                Find Substitute
-                            </div>
-
-                            <div class="preview-stat">
-                                <strong>03</strong>
-                                AI Assistant
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="preview-panel preview-large edu-preview">
-
-                    <h4>
-                        SMART<br>
-                        SUBSTITUTION<br>
-                        SYSTEM
-                    </h4>
-
-                    <p>
-                        Making teacher replacement smarter and easier.
-                    </p>
-
-                    <div class="preview-line"></div>
-                    <div class="preview-line short"></div>
-
-                </div>
-
-            </div>
-
-            <p class="project-description">
-                EduPlus is a smart teacher substitution and absentee
-                management platform designed for educational institutions.
-                Its substitution engine helps identify available teachers
-                using subject matching and workload distribution.
-            </p>
-
-            <div class="project-tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>Bootstrap 5</span>
-                <span>Google Apps Script</span>
-                <span>Supabase</span>
-            </div>
-
-            <div class="project-bar">
-                <span></span>
-            </div>
-
-        </article>
-
-        <!-- PROJECT 02 -->
-
-        <article class="project-card">
-
-            <div class="project-top">
-
-                <div class="project-number">02</div>
-
-                <div class="project-heading-text">
-
-                    <div class="project-category">
-                        UNIVERSITY WEB DEVELOPMENT
-                    </div>
-
-                    <h3>
-                        Cybersecurity Department Portal
-                    </h3>
-
-                </div>
-
-                <a
-                    class="live-project"
-                    href="https://mariamkhan00.github.io/cybersecurity-departmentportal/"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    LIVE PROJECT ↗
-                </a>
-
-            </div>
-
-            <div class="project-preview">
-
-                <div class="preview-panel dark">
-
-                    <div class="preview-topbar">
-                        <span class="preview-dot"></span>
-                        <span class="preview-dot"></span>
-                        <span class="preview-dot"></span>
-                    </div>
-
-                    <div class="preview-content">
-
-                        <h4>QUEST University</h4>
-                        <p>Department Portal</p>
-
-                        <div class="preview-stats">
-
-                            <div class="preview-stat">
-                                <strong>01</strong>
-                                Batches
-                            </div>
-
-                            <div class="preview-stat">
-                                <strong>02</strong>
-                                AI Chatbot
-                            </div>
-
-                            <div class="preview-stat">
-                                <strong>03</strong>
-                                Live Timetable
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="preview-panel preview-large quest-preview">
-
-                    <h4>
-                        DEPARTMENT<br>
-                        PORTAL
-                    </h4>
-
-                    <p>
-                        Academic information and digital university experience.
-                    </p>
-
-                    <div class="preview-line"></div>
-                    <div class="preview-line short"></div>
-
-                </div>
-
-            </div>
-
-            <p class="project-description">
-                A university department website project designed to
-                present academic information, department resources,
-                student batches, laboratories and timetable information
-                through an organized digital platform.
-            </p>
-
-            <div class="project-tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>Bootstrap 5</span>
-                <span>Google Sheets Integration</span>
-            </div>
-
-            <div class="project-bar">
-                <span></span>
-            </div>
-
-        </article>
-
-    </section>
-
-/* ==========================================
-   PROJECT TO ABOUT TRANSITION
-========================================== */
-
+/* ================= PROJECTS SECTION ================= */
+.projects-section {
+    position: relative;
+    padding: 120px 0 130px;
+    border-top: 1px solid rgba(73,231,226,.08);
+}
+
+.projects-heading {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.small-label {
+    color: var(--pink);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+}
+
+.projects-heading h2 {
+    font-family: var(--font-head);
+    font-size: clamp(55px, 9vw, 115px);
+    font-weight: 400;
+    margin-top: 20px;
+    color: var(--white);
+}
+
+.project-card {
+    position: relative;
+    max-width: 1050px;
+    margin: 0 auto 60px;
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 25px;
+    background: linear-gradient(145deg, #0c1819, #061011);
+    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    transition: transform .4s, border-color .4s;
+    /* GSAP opacity will handle appearance */
+    opacity: 1; 
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--pink);
+    box-shadow: 0 20px 60px rgba(237,57,210,.15);
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 18px;
+    pointer-events: none;
+}
+
+.project-top {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.project-number {
+    font-family: var(--font-head);
+    font-size: 70px;
+    line-height: 1;
+    background: linear-gradient(135deg, #ff21d2, #8c22ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.project-heading-text {
+    flex: 1;
+}
+
+.project-category {
+    color: var(--cyan);
+    font-size: 9px;
+    letter-spacing: .2em;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.project-heading-text h3 {
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--white);
+}
+
+.live-project {
+    text-decoration: none;
+    color: white;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 30px;
+    padding: 12px 22px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    background: rgba(255,255,255,.05);
+    transition: .3s;
+}
+
+.live-project:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+    box-shadow: 0 0 20px rgba(237,57,210,.6);
+}
+
+.project-preview {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.preview-panel {
+    min-height: 230px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #e9eff1;
+    color: #18242b;
+    position: relative;
+    transition: transform .3s;
+}
+
+.preview-panel:hover {
+    transform: translateY(-5px);
+}
+
+.preview-panel.dark {
+    background: #0a1218;
+    color: white;
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+.preview-topbar {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 15px;
+    background: rgba(0,0,0,.3);
+}
+
+.preview-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pink);
+}
+
+.preview-content {
+    padding: 25px;
+}
+
+.preview-content h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.preview-content p {
+    font-size: 11px;
+    line-height: 1.6;
+    opacity: .6;
+}
+
+.preview-stats {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.preview-stat {
+    flex: 1;
+    padding: 15px 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.05);
+    font-size: 10px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,.05);
+}
+
+.preview-stat strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: var(--cyan);
+}
+
+.preview-large {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+}
+
+.preview-large h4 {
+    font-family: var(--font-head);
+    font-size: clamp(22px, 3.5vw, 36px);
+    line-height: 1.1;
+    letter-spacing: 1px;
+}
+
+.edu-preview { background: linear-gradient(135deg, #0f1c2e, #1d3452); }
+.quest-preview { background: linear-gradient(135deg, #041927, #0b72b9); }
+
+.project-description {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    max-width: 850px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.project-tags span {
+    border: 1px solid rgba(73,231,226,.3);
+    color: var(--cyan);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    background: rgba(73,231,226,.05);
+}
+
+/* ================= ABOUT SECTION ================= */
 .about-section {
     position: relative;
-    min-height: 100svh;
-    padding: 110px 25px;
+    min-height: 90svh;
+    padding: 120px 25px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     isolation: isolate;
-
-    background:
-        radial-gradient(
-            ellipse at 50% 50%,
-            rgba(19,65,65,.48),
-            transparent 65%
-        ),
-        #071516;
-
     border-top: 1px solid rgba(73,231,226,.08);
-    scroll-margin-top: 0;
 }
-
-/* Animated neon transition */
 
 .about-section::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #ed39d2,
-        #49e7e2,
-        #ed39d2,
-        transparent
-    );
-
-    box-shadow: 0 0 20px #49e7e2;
+    top: 0; left: -100%;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--pink), var(--cyan), var(--pink), transparent);
+    box-shadow: 0 0 20px var(--cyan);
     animation: aboutLight 5s ease-in-out infinite;
 }
 
@@ -539,272 +510,70 @@ nav a.active {
     100% { left: 100%; }
 }
 
-/* Background lighting */
-
-.about-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
-    pointer-events: none;
-    z-index: -1;
-}
-
-.about-glow.one {
-    width: 300px;
-    height: 300px;
-    background: rgba(237,57,210,.13);
-    top: 5%;
-    left: 5%;
-}
-
-.about-glow.two {
-    width: 330px;
-    height: 330px;
-    background: rgba(73,231,226,.13);
-    bottom: 5%;
-    right: 5%;
-}
-
-.about-glow.three {
-    width: 180px;
-    height: 180px;
-    background: rgba(133,55,255,.12);
-    top: 40%;
-    right: 35%;
-}
-
-/* Background grid */
-
-.about-grid {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: .12;
-
-    background-image:
-        linear-gradient(rgba(73,231,226,.12) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(73,231,226,.12) 1px,transparent 1px);
-
-    background-size: 55px 55px;
-
-    mask-image: radial-gradient(
-        ellipse at center,
-        black,
-        transparent 75%
-    );
-}
-
-/* About content animation */
-
 .about-content {
     position: relative;
     z-index: 4;
     width: 100%;
-    max-width: 760px;
+    max-width: 800px;
     margin: auto;
     text-align: center;
-
-    opacity: 0;
-    transform: translateY(65px) scale(.97);
-    filter: blur(8px);
-
-    transition:
-        opacity 1s ease,
-        transform 1.1s cubic-bezier(.2,.8,.2,1),
-        filter 1s ease;
-}
-
-.about-section.visible .about-content {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    /* GSAP handles animation */
 }
 
 .about-content .small-label {
     display: inline-block;
     color: var(--cyan);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 800;
-    letter-spacing: .3em;
+    letter-spacing: .35em;
 }
 
 .about-content h2 {
-    font-family: 'Anton', Impact, sans-serif;
-    font-size: clamp(65px,10vw,125px);
+    font-family: var(--font-head);
+    font-size: clamp(65px, 10vw, 125px);
     font-weight: 400;
     line-height: 1;
     color: var(--white);
-    margin: 22px 0 28px;
-    text-shadow: 0 0 35px rgba(255,255,255,.08);
+    margin: 25px 0 30px;
+    text-shadow: 0 0 35px rgba(255,255,255,.1);
 }
 
 .about-content p {
-    max-width: 490px;
+    max-width: 550px;
     margin: auto;
-    color: #c0c9c5;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
+    color: var(--muted);
+    font-size: 15px;
     line-height: 2;
     font-weight: 500;
 }
 
 .about-underline {
-    width: 75px;
-    height: 3px;
-    margin: 25px auto;
+    width: 80px;
+    height: 4px;
+    margin: 30px auto;
     border-radius: 20px;
-
-    background: linear-gradient(
-        90deg,
-        var(--pink),
-        var(--cyan)
-    );
-
-    box-shadow: 0 0 15px rgba(73,231,226,.4);
-}
-
-/* About contact button */
-
-.about-contact {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 14px 30px;
-    border-radius: 50px;
-    color: white;
-
-    background: linear-gradient(
-        110deg,
-        #a51bd0,
-        #f02ac6
-    );
-
-    border: 1px solid rgba(255,255,255,.65);
-    text-decoration: none;
-    font-size: 9px;
-    font-weight: 900;
-    letter-spacing: .12em;
-
-    box-shadow: 0 0 25px rgba(226,42,203,.3);
-    transition: .35s ease;
-}
-
-.about-contact:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 0 35px rgba(226,42,203,.7);
-}
-
-/* ==========================================
-   UNIQUE FLOATING SVG ICONS
-========================================== */
-
-.about-object {
-    position: absolute;
-    z-index: 3;
-    width: 85px;
-    height: 85px;
-    pointer-events: none;
-    animation: objectFloat 6s ease-in-out infinite;
-}
-
-.about-object svg {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-    filter: drop-shadow(0 0 12px currentColor);
-}
-
-.about-object svg path,
-.about-object svg circle,
-.about-object svg rect,
-.about-object svg polygon {
-    vector-effect: non-scaling-stroke;
-}
-
-.object-moon {
-    top: 13%;
-    left: 9%;
-    color: #49e7e2;
-}
-
-.object-crystal {
-    top: 14%;
-    right: 9%;
-    color: #ed39d2;
-    animation-delay: 1s;
-}
-
-.object-smile {
-    bottom: 12%;
-    left: 10%;
-    color: #ed80e8;
-    animation-delay: 2s;
-}
-
-.object-cursor {
-    bottom: 14%;
-    right: 10%;
-    color: #9d9aff;
-    animation-delay: .7s;
-}
-
-@keyframes objectFloat {
-    0%,100% {
-        transform: translateY(0) rotate(-5deg);
-    }
-    50% {
-      transform: translateY(-18px) rotate(5deg);
-    }
-}
-
-/* Animated equalizer */
-
-.about-bars {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7px;
-    margin-top: 28px;
-}
-
-.about-bars span {
-    display: block;
-    width: 5px;
-    height: 15px;
-    border-radius: 10px;
-    background: linear-gradient(#ed39d2,#49e7e2);
-    animation: aboutEqualizer 1s ease-in-out infinite alternate;
-}
-
-.about-bars span:nth-child(2) { animation-delay: .2s; }
-.about-bars span:nth-child(3) { animation-delay: .4s; }
-.about-bars span:nth-child(4) { animation-delay: .6s; }
-.about-bars span:nth-child(5) { animation-delay: .8s; }
-
-@keyframes aboutEqualizer {
-    from { height: 6px; }
-    to { height: 25px; }
+    background: linear-gradient(90deg, var(--pink), var(--cyan));
+    box-shadow: 0 0 15px rgba(73,231,226,.5);
 }
 
 /* ================= CONTACT SECTION ================= */
-
 .contact-section {
-    padding: 85px 0 55px;
+    padding: 100px 0 70px;
     text-align: center;
     border-top: 1px solid rgba(255,255,255,.08);
-    scroll-margin-top: 20px;
 }
 
 .contact-section h2 {
-    font-family: 'Anton', Impact, sans-serif;
-    font-size: clamp(45px,8vw,90px);
+    font-family: var(--font-head);
+    font-size: clamp(45px, 8vw, 95px);
     font-weight: 400;
-    margin: 15px 0;
+    margin: 20px 0;
 }
 
 .contact-section p {
     color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 28px;
+    font-size: 15px;
+    margin-bottom: 35px;
 }
 
 .contact-section .contact {
@@ -812,286 +581,51 @@ nav a.active {
     display: inline-block;
     right: auto;
     bottom: auto;
-    animation: none;
 }
 
 footer {
-    padding: 25px 0;
+    padding: 30px 0;
     text-align: center;
     color: #82908c;
-    font-size: 10px;
-    letter-spacing: .1em;
+    font-size: 11px;
+    letter-spacing: .15em;
     border-top: 1px solid rgba(255,255,255,.08);
 }
 
 /* ================= ANIMATIONS ================= */
-
 @keyframes float {
-    0%,100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-13px) rotate(.6deg);
-    }
-}
-
-@keyframes titleIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%,25px);
-        filter: blur(9px);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%,0);
-        filter: blur(0);
-    }
-}
-
-@keyframes portraitIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%,35px) scale(.94);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%,0) scale(1);
-    }
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(1deg); }
 }
 
 /* ================= RESPONSIVE ================= */
-
-@media(max-width:700px) {
-
-    .site {
-        padding: 0 19px;
-    }
-
-    header {
-        height: 72px;
-    }
-
-    nav {
-        justify-content: space-between;
-        gap: 12px;
-    }
-
-    nav a {
-        font-size: 8px;
-        letter-spacing: .06em;
-    }
-
-    .hero {
-        min-height: calc(100svh - 73px);
-        padding-bottom: 50px;
-    }
-
-    .hero-title {
-        top: 20%;
-        font-size: clamp(43px,10.4vw,76px);
-        letter-spacing: 0;
-    }
-
-    .portrait-wrap {
-        width: min(94vw,490px);
-        height: auto;
-        aspect-ratio: 1103/1280;
-        max-height: 66vh;
-        bottom: 7%;
-    }
-
-    .side-copy {
-        left: 0;
-        bottom: 8%;
-        width: 116px;
-        font-size: 8px;
-         line-height: 1.55;
-    }
-
-    .side-copy .eyebrow {
-        font-size: 7px;
-        margin-bottom: 7px;
-    }
-
-    .contact {
-        right: 0;
-        bottom: 10%;
-        padding: 10px 14px;
-        font-size: 8px;
-    }
-
-    .scroll-note {
-        bottom: 13px;
-        font-size: 7px;
-    }
-
-    .corner-mark {
-        top: 4%;
-        font-size: 7px;
-    }
-
-    .projects-section {
-        padding: 80px 0;
-    }
-
-    .projects-heading {
-        margin-bottom: 45px;
-    }
-
-    .project-card {
-        padding: 23px 17px;
-        margin-bottom: 35px;
-    }
-
-    .project-top {
-        gap: 12px;
-        flex-wrap: wrap;
-    }
-
-    .project-number {
-        font-size: 49px;
-    }
-
-    .project-heading-text h3 {
-        font-size: 14px;
-    }
-
-    .live-project {
-        padding: 9px 12px;
-        font-size: 8px;
-    }
-
-    .project-preview {
-        grid-template-columns: 1fr;
-    }
-
-    .preview-panel {
-        min-height: 170px;
-    }
-
-    .project-description {
-        font-size: 11px;
-    }
-
-    .about-section {
-        min-height: 90svh;
-        padding: 90px 22px;
-    }
-
-    .about-content h2 {
-        font-size: clamp(58px,13vw,85px);
-    }
-
-    .about-content p {
-        font-size: 12px;
-        line-height: 1.9;
-    }
-
-    .about-object {
-        width: 52px;
-        height: 52px;
-    }
-
-    .object-moon {
-        top: 8%;
-        left: 5%;
-    }
-
-    .object-crystal {
-        top: 9%;
-        right: 5%;
-    }
-
-    .object-smile {
-        bottom: 6%;
-        left: 5%;
-    }
-
-    .object-cursor {
-        bottom: 8%;
-        right: 5%;
-    }
-
-    .about-glow.one,
-    .about-glow.two {
-        width: 170px;
-        height: 170px;
-    }
-
-    .about-section .about-content {
-        padding: 15px 0;
-    }
-
-    .about-contact {
-        padding: 12px 23px;
-    }
-
-    .contact-section {
-        padding: 70px 0 45px;
-    }
+@media(max-width: 900px) {
+    .project-preview { grid-template-columns: 1fr; }
+    .hero-title { top: 15%; font-size: 15vw; }
+    .portrait-wrap { height: min(65vh, 600px); }
 }
 
-@media(max-width:390px) {
+@media(max-width: 700px) {
+    .site { padding: 0 20px; }
+    nav a { font-size: 9px; letter-spacing: .1em; }
+    
+    .hero { min-height: calc(100svh - 80px); padding-bottom: 60px; }
+    .hero-title { top: 18%; font-size: 13vw; white-space: normal; line-height: 1; }
+    .portrait-wrap { height: 60vh; bottom: 5%; }
+    
+    .side-copy { bottom: 10%; width: 140px; font-size: 9px; }
+    .contact { bottom: 12%; padding: 12px 20px; font-size: 9px; }
+    .scroll-note { display: none; } /* Mobile par space bachane ke liye */
+    .corner-mark { display: none; }
 
-    nav {
-        gap: 8px;
-    }
-
-    nav a {
-        font-size: 7px;
-    }
-
-    .hero-title {
-        font-size: 9.8vw;
-    }
-
-    .portrait-wrap {
-        height: auto;
-        max-height: 61vh;
-    }
-
-    .side-copy {
-        width: 100px;
-    }
-
-    .contact {
-        padding: 9px 11px;
-    }
+    .project-card { padding: 25px 20px; }
+    .project-top { flex-wrap: wrap; gap: 15px; }
+    .project-number { font-size: 50px; }
+    .live-project { width: 100%; text-align: center; }
+    
+    .about-content h2 { font-size: 15vw; }
+    .about-content p { font-size: 13px; }
 }
-
-@media(prefers-reduced-motion:reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation: none !important;
-        scroll-behavior: auto !important;
-        transition: none !important;
-    }
-
-    .project-card {
-        opacity: 1;
-        transform: none;
-    }
-
-    .about-content {
-        opacity: 1;
-        transform: none;
-        filter: none;
-    }
-}
-
 </style>
 </head>
 
@@ -1099,244 +633,234 @@ footer {
 
 <div class="site">
 
-    <!-- ================= NAVIGATION ================= -->
-
+    <!-- NAVIGATION -->
     <header>
         <nav aria-label="Main navigation">
             <a href="#home">Home</a>
-            <a href="#projects">Project</a>
+            <a href="#projects">Projects</a>
             <a href="#about">About Me</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
-    <!-- ================= HOME ================= -->
-
+    <!-- HOME SECTION -->
     <main class="hero" id="home">
-
-        <h1 class="hero-title">
-            HI, I'M MARIAM KHAN
-            </h1>
+        <h1 class="hero-title gsap-title">HI, I'M MARIAM KHAN</h1>
 
         <div class="corner-mark">
             Computer Science · Creative Technology
         </div>
 
-        <div class="portrait-wrap">
-
+        <!-- Yahan maine class "gsap-portrait" add ki hai 3D tilt ke liye -->
+        <div class="portrait-wrap" id="portrait-container">
             <img
                 class="portrait"
-                src="mariam_portfolio_picture-removebg-preview.png"
+                id="girl-image"
+                src="https://raw.githubusercontent.com/mariamkhan00/mariam-khan-portfolio/main/mariam%20portfolio%20picture.jpeg"
                 alt="Mariam's 3D illustrated character"
             >
-
         </div>
 
-        <p class="side-copy">
-
-            <span class="eyebrow">
-                A LITTLE ABOUT ME
-            </span>
-
-            CREATING DIGITAL EXPERIENCES,
-            EXPLORING TECHNOLOGY AND
-            TURNING IDEAS INTO REALITY.
-
+        <p class="side-copy gsap-fade">
+            <span class="eyebrow">A LITTLE ABOUT ME</span>
+            CREATING DIGITAL EXPERIENCES, EXPLORING TECHNOLOGY AND TURNING IDEAS INTO REALITY.
         </p>
 
-        <a class="contact" href="#contact">
-            Let's connect ↗️
+        <a class="contact gsap-fade" href="#contact">
+            Let's connect ↗
         </a>
 
-        <div class="scroll-note">
+        <div class="scroll-note gsap-fade">
             Scroll to explore
         </div>
-
     </main>
 
-    <!-- ================= PROJECTS ================= -->
-
+    <!-- PROJECTS SECTION -->
     <section class="projects-section" id="projects">
-
-        <div class="projects-heading">
-
-            <span class="small-label">
-                WHAT I'VE CREATED
-            </span>
-
+        <div class="projects-heading gsap-heading">
+            <span class="small-label">WHAT I'VE CREATED</span>
             <h2>MY PROJECTS</h2>
-
-            <p>
-                Ideas transformed into real-world digital experiences.
-            </p>
-
+            <p>Ideas transformed into real-world digital experiences.</p>
         </div>
 
-        <!-- PROJECT 01 -->
-
-        <article class="project-card">
-
+        <!-- Project 1 -->
+        <article class="project-card gsap-card">
             <div class="project-top">
-
                 <div class="project-number">01</div>
-
                 <div class="project-heading-text">
-
-                    <div class="project-category">
-                        EDUCATION TECHNOLOGY
-                    </div>
-
-                    <h3>
-                        EduPlus – Smart Substitute System
-                    </h3>
-
+                    <div class="project-category">EDUCATION TECHNOLOGY</div>
+                    <h3>EduPlus – Smart Substitute System</h3>
                 </div>
-
-                <a
-                    class="live-project"
-                    href="https://mariamkhan00.github.io/eduplus-system/"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    LIVE PROJECT ↗️
+                <a class="live-project" href="https://mariamkhan00.github.io/eduplus-system/" target="_blank" rel="noopener">
+                    LIVE PROJECT ↗
                 </a>
-
             </div>
 
             <div class="project-preview">
-
                 <div class="preview-panel dark">
-
                     <div class="preview-topbar">
                         <span class="preview-dot"></span>
                         <span class="preview-dot"></span>
                         <span class="preview-dot"></span>
                     </div>
-
                     <div class="preview-content">
-
                         <h4>EduPlus Dashboard</h4>
                         <p>Smart Teacher Management</p>
-
                         <div class="preview-stats">
-
-                            <div class="preview-stat">
-                                <strong>01</strong>
-                                Teachers
-                            </div>
-
-                            <div class="preview-stat">
-                                <strong>02</strong>
-                                Find Substitute
-                            </div>
-
-                            <div class="preview-stat">
-                                <strong>03</strong>
-                                AI Assistant
-                                  </div>
-
+                            <div class="preview-stat"><strong>01</strong> Teachers</div>
+                            <div class="preview-stat"><strong>02</strong> Find Substitute</div>
+                            <div class="preview-stat"><strong>03</strong> AI Assistant</div>
                         </div>
-
                     </div>
-
                 </div>
-
                 <div class="preview-panel preview-large edu-preview">
-
-                    <h4>
-                        SMART<br>
-                        SUBSTITUTION<br>
-                        SYSTEM
-                    </h4>
-
-                    <p>
-                        Making teacher replacement smarter and easier.
-                    </p>
-
-                    <div class="preview-line"></div>
-                    <div class="preview-line short"></div>
-
+                    <h4>SMART<br>SUBSTITUTION<br>SYSTEM</h4>
+                    <p>Making teacher replacement smarter and easier.</p>
                 </div>
-
             </div>
 
             <p class="project-description">
-                EduPlus is a smart teacher substitution and absentee
-                management platform designed for educational institutions.
-                Its substitution engine helps identify available teachers
-                using subject matching and workload distribution.
+                EduPlus is a smart teacher substitution and absentee management platform designed for educational institutions. Its substitution engine helps identify available teachers using subject matching and workload distribution.
             </p>
-
             <div class="project-tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>Bootstrap 5</span>
-                <span>Google Apps Script</span>
-                <span>Supabase</span>
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Bootstrap 5</span><span>Google Apps Script</span><span>Supabase</span>
             </div>
-
-            <div class="project-bar">
-                <span></span>
-            </div>
-
         </article>
 
-        <!-- PROJECT 02 -->
-
-        <article class="project-card">
-
+        <!-- Project 2 -->
+        <article class="project-card gsap-card">
             <div class="project-top">
-
                 <div class="project-number">02</div>
-
                 <div class="project-heading-text">
-
-                    <div class="project-category">
-                        UNIVERSITY WEB DEVELOPMENT
-                    </div>
-
-                    <h3>
-                        Cybersecurity Department Portal
-                    </h3>
-
+                    <div class="project-category">UNIVERSITY WEB DEVELOPMENT</div>
+                    <h3>Cybersecurity Department Portal</h3>
                 </div>
-
-                <a
-                    class="live-project"
-                    href="https://mariamkhan00.github.io/cybersecurity-departmentportal/"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    LIVE PROJECT ↗️
+                <a class="live-project" href="https://mariamkhan00.github.io/cybersecurity-departmentportal/" target="_blank" rel="noopener">
+                    LIVE PROJECT ↗
                 </a>
-
             </div>
 
             <div class="project-preview">
-
                 <div class="preview-panel dark">
-
                     <div class="preview-topbar">
                         <span class="preview-dot"></span>
                         <span class="preview-dot"></span>
                         <span class="preview-dot"></span>
                     </div>
-
                     <div class="preview-content">
-
                         <h4>QUEST University</h4>
                         <p>Department Portal</p>
-
                         <div class="preview-stats">
+                            <div class="preview-stat"><strong>01</strong> Batches</div>
+                            <div class="preview-stat"><strong>02</strong> AI Chatbot</div>
+                            <div class="preview-stat"><strong>03</strong> Live Timetable</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-panel preview-large quest-preview">
+                    <h4>DEPARTMENT<br>PORTAL</h4>
+                    <p>Academic information and digital university experience.</p>
+                </div>
+            </div>
 
-                            <div class="preview-stat">
-                                <strong>01</strong>
-                                Batches
-                            </div>
+            <p class="project-description">
+                A university department website project designed to present academic information, department resources, student batches, laboratories and timetable information through an organized digital platform.
+            </p>
+            <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Bootstrap 5</span><span>Google Sheets Integration</span>
+            </div>
+        </article>
+    </section>
 
-                            <div class="preview-stat">
-                                <strong>02</strong>
-                                AI Chatbot
-                            </div>
+    <!-- ABOUT ME SECTION -->
+    <section class="about-section" id="about">
+        <div class="about-content gsap-about">
+            <span class="small-label">GET TO KNOW ME</span>
+            <h2>ABOUT ME</h2>
+            <div class="about-underline"></div>
+            <p>
+                I'm Mariam Khan, a Computer Science student at QUEST University, Nawabshah. I enjoy exploring technology, developing websites, creating digital designs and turning creative ideas into practical projects.
+            </p>
+        </div>
+    </section>
 
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <span class="small-label">HAVE A PROJECT IN MIND?</span>
+        <h2>LET'S CONNECT</h2>
+        <p>Let's connect, collaborate and create something meaningful.</p>
+        <a class="contact" href="https://linkedin.com/in/mariam-khan-556249438/" target="_blank" rel="noopener">
+            CONNECT ON LINKEDIN ↗
+        </a>
+    </section>
+
+    <footer>
+        © 2026 MARIAM KHAN · ALL RIGHTS RESERVED
+    </footer>
+
+</div>
+
+<script>
+    // Register GSAP Plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 1. Initial Hero Load Animations
+    const tl = gsap.timeline();
+    
+    tl.from(".gsap-title", { y: 50, opacity: 0, duration: 1, ease: "power3.out" })
+      .from("#portrait-container", { y: 100, opacity: 0, duration: 1.2, ease: "power3.out" }, "-=0.8")
+      .from(".gsap-fade", { y: 20, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power2.out" }, "-=0.6");
+
+    // 2. Scroll Animations for Projects
+    gsap.utils.toArray('.gsap-card').forEach(card => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+            },
+            y: 60,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out"
+        });
+    });
+
+    // 3. About Section Scroll Reveal
+    gsap.from(".gsap-about", {
+        scrollTrigger: {
+            trigger: ".about-section",
+            start: "top 70%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    });
+
+    // 4. 3D TILT EFFECT ON GIRL IMAGE (Mouse Move)
+    const portrait = document.getElementById("girl-image");
+    const container = document.getElementById("portrait-container");
+
+    container.addEventListener("mousemove", (e) => {
+        // Calculate mouse position relative to center of screen
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+        
+        // Apply rotation
+        portrait.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+
+    // Reset when mouse leaves
+    container.addEventListener("mouseleave", () => {
+        portrait.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        portrait.style.transition = "transform 0.5s ease"; // Smooth reset
+    });
+
+    container.addEventListener("mouseenter", () => {
+        portrait.style.transition = "transform 0.1s ease"; // Fast tracking while moving
+    });
+
+</script>
+
+</body>
+</html>
