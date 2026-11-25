@@ -34,12 +34,20 @@ h2{font-size:clamp(40px,6.5vw,76px);margin-bottom:18px}
 /* hero */
 .hero{min-height:100svh;padding:110px 0 40px;display:flex;align-items:center;position:relative;overflow:hidden}
 .stage{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
-.hero h1{font-size:clamp(70px,15vw,200px);letter-spacing:-.02em;position:relative;z-index:1;animation:rise 1s .1s both}
-.fig{position:relative;margin-top:-6vw;width:min(380px,78vw);aspect-ratio:1;display:grid;place-items:end center;animation:rise 1s .35s both}
-.fig::before{content:"";position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb27a,var(--acc));box-shadow:0 0 90px var(--glow)}
-.fig img{position:relative;height:118%;width:auto;max-width:none;filter:drop-shadow(0 16px 24px rgba(0,0,0,.28));animation:float 5s ease-in-out infinite;margin-bottom:-4%}
-.chip{position:absolute;padding:7px 14px;border-radius:99px;font-size:12px;font-weight:700;background:var(--card);border:1px solid var(--line);animation:float 6s ease-in-out infinite;white-space:nowrap}
-.chip:nth-of-type(1){left:-14%;top:22%}.chip:nth-of-type(2){right:-16%;top:12%;animation-delay:-2s}.chip:nth-of-type(3){left:-20%;bottom:26%;animation-delay:-4s}.chip:nth-of-type(4){right:-12%;bottom:18%;animation-delay:-1s}
+.hero h1{font-size:clamp(70px,15vw,200px);letter-spacing:-.02em;position:relative;z-index:1}
+.ch{display:inline-block;animation:letter .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*70ms + .1s)}
+@keyframes letter{from{opacity:0;transform:translateY(70%) rotate(8deg);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.role{margin-top:6px;font-size:clamp(15px,2vw,19px);color:var(--mute);animation:rise 1s .5s both}
+.role b{color:var(--acc);display:inline-block;animation:swap 2.4s infinite}
+@keyframes swap{0%{opacity:0;transform:translateY(10px)}12%,80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-10px)}}
+.fig{position:relative;z-index:2;--mx:0;--my:0;margin-top:-6vw;width:min(380px,78vw);aspect-ratio:1;display:grid;place-items:end center;animation:rise 1s .35s both}
+.fig::before{content:"";position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb27a,var(--acc));box-shadow:0 0 90px var(--glow);animation:pulse 4s ease-in-out infinite;translate:calc(var(--mx)*-10px) calc(var(--my)*-6px)}
+.fig::after{content:"";position:absolute;inset:-9%;z-index:-1;border-radius:50%;border:1.5px dashed var(--acc);opacity:.5;animation:spin 40s linear infinite}
+@keyframes pulse{50%{transform:scale(1.04);box-shadow:0 0 130px var(--glow)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fig img{position:relative;height:118%;width:auto;max-width:none;filter:drop-shadow(0 16px 24px rgba(0,0,0,.28));animation:float 5s ease-in-out infinite;margin-bottom:-4%;translate:calc(var(--mx)*14px) calc(var(--my)*8px)}
+.chip{position:absolute;z-index:3;translate:calc(var(--mx)*-18px) calc(var(--my)*-10px);padding:7px 14px;border-radius:99px;font-size:12px;font-weight:700;background:var(--card);border:1px solid var(--line);animation:float 6s ease-in-out infinite;white-space:nowrap}
+.chip:nth-of-type(1){left:-34%;top:20%}.chip:nth-of-type(2){right:-40%;top:10%;animation-delay:-2s}.chip:nth-of-type(3){left:-38%;bottom:24%;animation-delay:-4s}.chip:nth-of-type(4){right:-32%;bottom:14%;animation-delay:-1s}
 .hero .lead{margin:28px auto 22px;animation:rise 1s .6s both}
 .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:rise 1s .75s both}
 @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
@@ -77,8 +85,22 @@ dialog iframe{width:100%;height:calc(100% - 52px);border:0;background:#fff}
 .tl li{border-top:2px solid var(--line);padding-top:20px;position:relative}
 .tl li::before{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--acc)}
 .tl b{font-size:15px}.tl p{color:var(--mute);font-size:14px}
-.say{margin-top:70px;padding:34px;border:1px dashed var(--line);border-radius:22px;text-align:center}
-.say h3{font-size:34px;margin-bottom:8px}.say p{color:var(--mute);max-width:520px;margin:auto}
+.say{margin-top:90px;text-align:center}.say>h3{font-size:clamp(32px,5vw,56px);margin-bottom:30px}
+.quote{position:relative;max-width:760px;margin:auto;padding:44px clamp(22px,5vw,50px);background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden}
+.quote::before{content:"\201C";position:absolute;top:-8px;left:22px;font:120px/1 'Instrument Serif',serif;color:var(--acc);opacity:.35}
+.quote p{font-family:'Instrument Serif',serif;font-size:clamp(22px,3vw,32px);line-height:1.3}
+.quote p span{display:inline-block;opacity:0;filter:blur(8px);transform:translateY(8px);transition:.7s calc(var(--i)*45ms)}
+.quote.in p span{opacity:1;filter:none;transform:none}
+.who{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:14px;opacity:0;transition:opacity .8s 1.6s}.quote.in .who{opacity:1}
+.who i{width:42px;height:42px;border-radius:50%;background:var(--acc);color:var(--on-acc);display:grid;place-items:center;font:700 16px 'Plus Jakarta Sans';font-style:normal}
+.who small{display:block;color:var(--mute)}
+.all{margin-top:80px}.all h2{margin-bottom:10px}
+.grp{display:grid;grid-template-columns:150px 1fr;gap:14px 24px;padding:20px 0;border-top:1px solid var(--line)}
+.grp h3{font-size:26px}.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills span{padding:7px 14px;border:1px solid var(--line);border-radius:99px;font-size:13px;font-weight:500;opacity:0;transform:scale(.7) translateY(10px);transition:.5s cubic-bezier(.2,.9,.3,1.4) calc(var(--i)*55ms),border-color .25s,background .25s,color .25s}
+.grp.in .pills span{opacity:1;transform:none}
+.pills span:hover{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+@media(max-width:600px){.grp{grid-template-columns:1fr}}
 /* cta + contact */
 .banner{background:var(--acc);color:var(--on-acc);border-radius:30px;padding:clamp(34px,6vw,70px);display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
 .banner h2{margin:0;max-width:600px}.banner .btn{border-color:var(--on-acc);color:var(--on-acc)}.banner .btn.fill{background:var(--on-acc);color:var(--acc)}
@@ -86,7 +108,7 @@ dialog iframe{width:100%;height:calc(100% - 52px);border:0;background:#fff}
 .links a:last-child{border-bottom:1px solid var(--line)}.links a:hover{padding-left:14px;color:var(--acc)}
 .links small{font:400 14px 'Plus Jakarta Sans';color:var(--mute)}
 footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
-@media(max-width:600px){.nav a.l{padding:8px 10px;font-size:12px}.nav .talk{display:none}.chip{font-size:10px;padding:5px 10px}.chip:nth-of-type(1){left:-8%}.chip:nth-of-type(3){left:-10%}.chip:nth-of-type(2){right:-8%}.chip:nth-of-type(4){right:-6%}}
+@media(max-width:600px){.nav a.l{padding:8px 10px;font-size:12px}.nav .talk{display:none}.chip{font-size:10px;padding:5px 10px}.chip:nth-of-type(1){left:-6%;top:6%}.chip:nth-of-type(2){right:-6%;top:20%}.chip:nth-of-type(3){left:-6%;bottom:30%}.chip:nth-of-type(4){right:-6%;bottom:12%}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -98,18 +120,19 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
 </nav>
 
 <header class="hero" id="home"><div class="wrap stage">
-  <h1>Mariam <em>Khan</em></h1>
+  <h1 aria-label="Mariam Khan">Mariam <em>Khan</em></h1>
+  <p class="role">I'm a <b id="role">Web Developer</b></p>
   <div class="fig">
     <span class="chip">Web Development</span><span class="chip">AI &amp; Problem Solving</span><span class="chip">Cyber Security</span><span class="chip">Graphic Design</span>
     <img src="mariam_portfolio_picture-removebg-preview.png" alt="Mariam's 3D illustrated character">
   </div>
-  <p class="lead">Computer Science student at QUEST University. I create digital experiences, explore technology and turn ideas into real projects.</p>
+  <p class="lead" style="margin-top:-4px">Computer Science student at QUEST University. I create digital experiences, explore technology and turn ideas into real projects.</p>
   <div class="cta-row"><a class="btn fill" href="#work">See my projects</a><a class="btn" href="#contact">Let's connect</a></div>
 </div></header>
 
 <div class="mq" aria-hidden="true">
-  <div><span>Web Development</span><span>AI &amp; Problem Solving</span><span>Cyber Security</span><span>Graphic Design</span><span>Video Editing</span></div>
-  <div><span>Prompt Engineering</span><span>Ethical Hacking</span><span>Responsive Websites</span><span>Portfolio Design</span><span>Supabase</span></div>
+  <div><span>Web Development</span><span>React / Next.js</span><span>AI &amp; Problem Solving</span><span>Cyber Security</span><span>3D Animation</span><span>Graphic Design</span></div>
+  <div><span>Prompt Engineering</span><span>Digital Marketing</span><span>SEO</span><span>Data Analysis</span><span>Supabase</span><span>n8n</span></div>
 </div>
 
 <section id="work"><div class="wrap">
@@ -158,7 +181,19 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
       <li><b>Going deeper</b><p>AI, security and creative technology.</p></li>
     </ol>
   </div>
-  <div class="say"><h3>What people say about working with me</h3><p>Add a short quote here from a teacher, classmate or client, with their name and role.</p></div>
+  <div class="all">
+    <h2>Everything I <em>work with</em></h2>
+    <div class="grp"><h3>Development</h3><div class="pills"><span>JavaScript</span><span>TypeScript</span><span>React / Next.js</span><span>SQL</span><span>REST APIs</span><span>Web Development</span><span>Frontend Developer</span><span>Full Stack Developer</span><span>Git / GitHub</span><span>VS Code</span><span>Website hosting</span></div></div>
+    <div class="grp"><h3>AI &amp; Data</h3><div class="pills"><span>Artificial Intelligence / Machine Learning</span><span>Data Analysis</span><span>AI Tools &amp; Prompt Engineering</span><span>n8n</span></div></div>
+    <div class="grp"><h3>Creative</h3><div class="pills"><span>3D Animation</span><span>3D Artist</span><span>Painting</span><span>Canva</span></div></div>
+    <div class="grp"><h3>Marketing</h3><div class="pills"><span>Digital Marketing</span><span>Google Ads</span><span>Meta Ads</span><span>SEO</span><span>WordPress</span><span>Mailchimp</span><span>Google Analytics</span></div></div>
+    <div class="grp"><h3>Office &amp; Work</h3><div class="pills"><span>Excel, Word &amp; PowerPoint</span><span>Freelancer</span></div></div>
+  </div>
+  <div class="say"><h3>What people say about <em>working with me</em></h3>
+    <!-- Sample testimonial: replace the name and words with a real quote before sharing publicly -->
+    <figure class="quote"><p id="qt">Mariam turns ideas into clean, working projects. She learns fast, pays attention to every detail and always delivers on time. Working with her was a real pleasure.</p>
+      <figcaption class="who"><i>A</i><span><b>Ayesha Malik</b><small>Classmate &amp; project partner</small></span></figcaption></figure>
+  </div>
 </div></section>
 
 <section id="contact"><div class="wrap">
@@ -188,6 +223,15 @@ const dlg=$('#dlg');
 $$('[data-prev]').forEach(b=>b.onclick=()=>{$('#dt').textContent=b.dataset.t;$('#df').src=b.dataset.prev;dlg.showModal()});
 const close=()=>{dlg.close();$('#df').src='about:blank'};
 $('#dx').onclick=close;dlg.addEventListener('click',e=>{if(e.target===dlg)close()});dlg.addEventListener('cancel',()=>$('#df').src='about:blank');
+// hero: letters rise one by one, role words rotate, image follows the pointer
+(function(){let n=0;const h=$('.hero h1');const split=(el)=>[...el.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();[...c.textContent].forEach(ch=>{if(ch===' '){f.append(' ');return}const sp=document.createElement('span');sp.className='ch';sp.style.setProperty('--i',n++);sp.setAttribute('aria-hidden','true');sp.textContent=ch;f.append(sp)});c.replaceWith(f)}else split(c)});split(h);
+const roles=['Web Developer','AI Explorer','Cyber Security Learner','3D Artist','Creative Technologist'],r=$('#role');let k=0;setInterval(()=>{k=(k+1)%roles.length;r.textContent=roles[k]},2400);
+const fig=$('.fig');$('.hero').addEventListener('pointermove',e=>{fig.style.setProperty('--mx',(e.clientX/innerWidth-.5)*2);fig.style.setProperty('--my',(e.clientY/innerHeight-.5)*2)})})();
+// testimonial words blur in; skill pills pop in group by group
+const q=$('#qt');q.innerHTML=q.textContent.split(' ').map((w,i)=>`<span style="--i:${i}">${w}</span>`).join(' ');
+$$('.pills span').forEach((p,i)=>p.style.setProperty('--i',i%12));
+const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}}),{threshold:.3});
+rv.observe($('.quote'));$$('.grp').forEach(g=>rv.observe(g));
 // about statement lights up word by word while scrolling
 const st=$('#stmt');st.innerHTML=st.textContent.split(' ').map(w=>`<span>${w}</span>`).join(' ');
 const ws=$$('#stmt span'),lit=()=>{const r=st.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.3)));ws.forEach((w,i)=>w.classList.toggle('lit',i/ws.length<p))};
