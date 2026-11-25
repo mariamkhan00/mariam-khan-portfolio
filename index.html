@@ -34,6 +34,247 @@ h2{font-size:clamp(40px,6.5vw,76px);margin-bottom:18px}
 /* hero */
 .hero{min-height:100svh;padding:110px 0 40px;display:flex;align-items:center;position:relative;overflow:hidden}
 .stage{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
+.hero h1{font-size:clamp(70px,15vw,200px);letter-spacing:-.02em;position:relative;z-index:1;white-space:nowrap}
+.ch{display:inline-block;animation:letter .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*70ms + .1s)}
+@keyframes letter{from{opacity:0;transform:translateY(70%) rotate(8deg);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.role{margin-top:26px;position:relative;z-index:3;font-size:clamp(15px,2vw,19px);color:var(--mute);animation:rise 1s .5s both}
+.role b{color:var(--acc);display:inline-block;animation:swap 2.4s infinite}
+@keyframes swap{0%{opacity:0;transform:translateY(10px)}12%,80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-10px)}}
+.fig{position:relative;z-index:2;--mx:0;--my:0;margin-top:-6vw;width:min(380px,78vw);aspect-ratio:1;display:grid;place-items:end center;animation:rise 1s .35s both}
+.fig::before{content:"";position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb27a,var(--acc));box-shadow:0 0 90px var(--glow);animation:pulse 4s ease-in-out infinite;translate:calc(var(--mx)*-10px) calc(var(--my)*-6px)}
+.fig::after{content:"";position:absolute;inset:-9%;z-index:-1;border-radius:50%;border:1.5px dashed var(--acc);opacity:.5;animation:spin 40s linear infinite}
+@keyframes pulse{50%{transform:scale(1.04);box-shadow:0 0 130px var(--glow)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fig img{position:relative;height:118%;width:auto;max-width:none;filter:drop-shadow(0 16px 24px rgba(0,0,0,.28));animation:float 5s ease-in-out infinite;margin-bottom:-4%;translate:calc(var(--mx)*14px) calc(var(--my)*8px)}
+.chip{position:absolute;z-index:3;translate:calc(var(--mx)*-18px) calc(var(--my)*-10px);padding:7px 14px;border-radius:99px;font-size:12px;font-weight:700;background:var(--card);border:1px solid var(--line);animation:float 6s ease-in-out infinite;white-space:nowrap}
+.chip:nth-of-type(1){left:-34%;top:20%}.chip:nth-of-type(2){right:-40%;top:10%;animation-delay:-2s}.chip:nth-of-type(3){left:-38%;bottom:24%;animation-delay:-4s}.chip:nth-of-type(4){right:-32%;bottom:14%;animation-delay:-1s}
+.hero .lead{margin:28px auto 22px;animation:rise 1s .6s both}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:rise 1s .75s both}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-12px)}}
+/* marquee */
+.mq{border-block:1px solid var(--line);padding:18px 0;overflow:hidden;font-family:'Instrument Serif',serif;font-size:clamp(28px,4vw,44px)}
+.mq div{display:flex;width:max-content;gap:40px;animation:slide 32s linear infinite}
+.mq div+div{animation-direction:reverse;margin-top:6px;font-style:italic;color:transparent;-webkit-text-stroke:1px var(--mute)}
+.mq span::after{content:"•";margin-left:40px;color:var(--acc);-webkit-text-stroke:0}
+@keyframes slide{to{transform:translateX(-50%)}}
+/* work */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 34px}
+.filters button{padding:8px 18px;border-radius:99px;border:1px solid var(--line);background:none;color:var(--ink);font:500 13px inherit;font-family:inherit;cursor:pointer}
+.filters button.on{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:22px}
+.proj{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:14px;transition:transform .3s,border-color .3s}
+.proj:hover{transform:translateY(-6px);border-color:var(--acc)}
+.proj[hidden]{display:none}
+.shot{height:150px;border-radius:14px;background:linear-gradient(135deg,#102c2c,#0b72b9);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;font-family:'Instrument Serif',serif;font-size:28px;line-height:1}
+.shot.b{background:linear-gradient(135deg,#243d5d,var(--acc))}
+.proj h3{font-size:32px}.proj p{color:var(--mute);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}.tags span{font-size:11px;padding:4px 10px;border:1px solid var(--line);border-radius:99px;color:var(--mute)}
+.proj .cta-row{justify-content:flex-start;margin-top:auto;animation:none}
+dialog{width:min(980px,94vw);height:min(80vh,720px);margin:auto;border:0;border-radius:20px;padding:0;background:var(--card);color:var(--ink);overflow:hidden}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+dialog .bar{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px}
+dialog iframe{width:100%;height:calc(100% - 52px);border:0;background:#fff}
+/* about */
+.stmt{font-family:'Instrument Serif',serif;font-size:clamp(30px,4.6vw,56px);line-height:1.15;max-width:900px}
+.stmt span{opacity:.18;transition:opacity .3s}.stmt span.lit{opacity:1}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 48px;margin-top:56px}
+.skills div{border-top:1px solid var(--line);padding:20px 0 24px}.skills h3{font-size:28px}.skills p{color:var(--mute);font-size:15px}
+.tl{margin-top:70px}
+.tl ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:26px;margin-top:30px;position:relative}
+.tl li{border-top:2px solid var(--line);padding-top:20px;position:relative}
+.tl li::before{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--acc)}
+.tl b{font-size:15px}.tl p{color:var(--mute);font-size:14px}
+.say{margin-top:90px;text-align:center}.say>h3{font-size:clamp(32px,5vw,56px);margin-bottom:30px}
+.quote{position:relative;max-width:760px;margin:auto;padding:44px clamp(22px,5vw,50px);background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden}
+.quote::before{content:"\201C";position:absolute;top:-8px;left:22px;font:120px/1 'Instrument Serif',serif;color:var(--acc);opacity:.35}
+.quote p{font-family:'Instrument Serif',serif;font-size:clamp(22px,3vw,32px);line-height:1.3}
+.quote p span{display:inline-block;opacity:0;filter:blur(8px);transform:translateY(8px);transition:.7s calc(var(--i)*45ms)}
+.quote.in p span{opacity:1;filter:none;transform:none}
+.who{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:14px;opacity:0;transition:opacity .8s 1.6s}.quote.in .who{opacity:1}
+.who i{width:42px;height:42px;border-radius:50%;background:var(--acc);color:var(--on-acc);display:grid;place-items:center;font:700 16px 'Plus Jakarta Sans';font-style:normal}
+.who small{display:block;color:var(--mute)}
+.all{margin-top:80px}.all h2{margin-bottom:10px}
+.grp{display:grid;grid-template-columns:150px 1fr;gap:14px 24px;padding:20px 0;border-top:1px solid var(--line)}
+.grp h3{font-size:26px}.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills span{padding:7px 14px;border:1px solid var(--line);border-radius:99px;font-size:13px;font-weight:500;opacity:0;transform:scale(.7) translateY(10px);transition:.5s cubic-bezier(.2,.9,.3,1.4) calc(var(--i)*55ms),border-color .25s,background .25s,color .25s}
+.grp.in .pills span{opacity:1;transform:none}
+.pills span:hover{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+@media(max-width:600px){.grp{grid-template-columns:1fr}}
+/* cta + contact */
+.banner{background:var(--acc);color:var(--on-acc);border-radius:30px;padding:clamp(34px,6vw,70px);display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+.banner h2{margin:0;max-width:600px}.banner .btn{border-color:var(--on-acc);color:var(--on-acc)}.banner .btn.fill{background:var(--on-acc);color:var(--acc)}
+.links{margin-top:34px}.links a{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-top:1px solid var(--line);text-decoration:none;font-size:clamp(20px,3vw,30px);font-family:'Instrument Serif',serif;transition:padding .3s,color .3s}
+.links a:last-child{border-bottom:1px solid var(--line)}.links a:hover{padding-left:14px;color:var(--acc)}
+.links small{font:400 14px 'Plus Jakarta Sans';color:var(--mute)}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
+@media(max-width:600px){.nav a.l{padding:8px 10px;font-size:12px}.nav .talk{display:none}.chip{font-size:10px;padding:5px 10px}.hero{padding-top:96px}.hero h1{font-size:15.5vw;white-space:nowrap}.fig{width:82vw;margin-top:-5vw}.fig img{position:absolute;left:0;right:0;bottom:-3%;margin:0 auto;height:116%;width:auto}.chip:nth-of-type(1){left:-6%;top:26%}.chip:nth-of-type(2){right:-6%;top:6%}.chip:nth-of-type(3){left:-6%;bottom:30%}.chip:nth-of-type(4){right:-6%;bottom:10%}.role{margin-top:30px}.hero .lead{margin-top:10px!important;font-size:15px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <a class="l on" href="#home">Home</a><a class="l" href="#work">Work</a><a class="l" href="#about">About</a><a class="l" href="#contact">Contact</a>
+  <a class="btn talk" href="#contact">Let's talk</a>
+  <button id="theme" aria-label="Switch light or dark theme">◐</button>
+</nav>
+
+<header class="hero" id="home"><div class="wrap stage">
+  <h1 aria-label="Mariam Khan">Mariam <em>Khan</em></h1>
+  <div class="fig">
+    <span class="chip">Web Development</span><span class="chip">AI &amp; Problem Solving</span><span class="chip">Cyber Security</span><span class="chip">Graphic Design</span>
+    <img src="mariam_portfolio_picture-removebg-preview.png" alt="Mariam's 3D illustrated character">
+  </div>
+  <p class="role">I'm a <b id="role">Web Developer</b></p>
+  <p class="lead" style="margin-top:-4px">Computer Science student at QUEST University. I create digital experiences, explore technology and turn ideas into real projects.</p>
+  <div class="cta-row"><a class="btn fill" href="#work">See my projects</a><a class="btn" href="#contact">Let's connect</a></div>
+</div></header>
+
+<div class="mq" aria-hidden="true">
+  <div><span>Web Development</span><span>React / Next.js</span><span>AI &amp; Problem Solving</span><span>Cyber Security</span><span>3D Animation</span><span>Graphic Design</span></div>
+  <div><span>Prompt Engineering</span><span>Digital Marketing</span><span>SEO</span><span>Data Analysis</span><span>Supabase</span><span>n8n</span></div>
+</div>
+
+<section id="work"><div class="wrap">
+  <h2>Projects that <em>work</em> for real users</h2>
+  <p class="lead">Ideas turned into live digital experiences. Preview them here or open them in a new tab.</p>
+  <div class="filters" role="group" aria-label="Filter projects">
+    <button class="on" data-f="all">All</button><button data-f="web">Web</button><button data-f="ai">AI</button><button data-f="security">Security</button>
+  </div>
+  <div class="grid">
+    <article class="proj" data-cat="web ai">
+      <div class="shot">Smart substitution system</div>
+      <h3>EduPlus – Smart Substitute System</h3>
+      <p>A teacher substitution and absentee management platform. Its substitution engine finds available teachers using subject matching and workload distribution.</p>
+      <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Bootstrap 5</span><span>Google Apps Script</span><span>Supabase</span></div>
+      <div class="cta-row"><button class="btn fill" data-prev="https://mariamkhan00.github.io/eduplus-system/" data-t="EduPlus">Preview</button><a class="btn" href="https://mariamkhan00.github.io/eduplus-system/" target="_blank" rel="noopener">Open live project ↗</a></div>
+    </article>
+    <article class="proj" data-cat="web security">
+      <div class="shot b">Department portal</div>
+      <h3>Cybersecurity Department Portal</h3>
+      <p>A university department website with academic information, resources, student batches, laboratories, an AI chatbot and a live timetable.</p>
+      <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Bootstrap 5</span><span>Google Sheets</span></div>
+      <div class="cta-row"><button class="btn fill" data-prev="https://mariamkhan00.github.io/cybersecurity-departmentportal/" data-t="Cybersecurity Portal">Preview</button><a class="btn" href="https://mariamkhan00.github.io/cybersecurity-departmentportal/" target="_blank" rel="noopener">Open live project ↗</a></div>
+    </article>
+  </div>
+</div></section>
+
+<dialog id="dlg"><div class="bar"><span id="dt"></span><button class="btn" id="dx">Close</button></div><iframe id="df" title="Project preview" loading="lazy"></iframe></dialog>
+
+<section id="about"><div class="wrap">
+  <p class="stmt" id="stmt">I'm Mariam Khan, a Computer Science student at QUEST University, Nawabshah. I enjoy exploring technology, building websites, making digital designs and turning creative ideas into practical projects.</p>
+  <div class="skills">
+    <div><h3>Web Development</h3><p>Responsive websites with HTML, CSS, JavaScript and Bootstrap.</p></div>
+    <div><h3>AI &amp; Problem Solving</h3><p>Artificial intelligence, prompt engineering and algorithmic logic.</p></div>
+    <div><h3>Cyber Security</h3><p>Ethical hacking, network security and secure system design.</p></div>
+    <div><h3>Graphic Design</h3><p>Engaging, clear visuals for digital platforms.</p></div>
+    <div><h3>Video Editing</h3><p>Editing and producing videos for content and presentations.</p></div>
+    <div><h3>Portfolio Development</h3><p>Designing and building portfolios that show creative work.</p></div>
+  </div>
+  <div class="tl">
+    <h2>Every project, <em>one more step</em></h2>
+    <!-- Edit these four steps and add your own dates -->
+    <ol>
+      <li><b>Started Computer Science</b><p>QUEST University, Nawabshah.</p></li>
+      <li><b>Web foundations</b><p>HTML, CSS, JavaScript and Bootstrap.</p></li>
+      <li><b>Real-world builds</b><p>EduPlus and the Cybersecurity Department Portal.</p></li>
+      <li><b>Going deeper</b><p>AI, security and creative technology.</p></li>
+    </ol>
+  </div>
+  <div class="all">
+    <h2>Everything I <em>work with</em></h2>
+    <div class="grp"><h3>Development</h3><div class="pills"><span>JavaScript</span><span>TypeScript</span><span>React / Next.js</span><span>SQL</span><span>REST APIs</span><span>Web Development</span><span>Frontend Developer</span><span>Full Stack Developer</span><span>Git / GitHub</span><span>VS Code</span><span>Website hosting</span></div></div>
+    <div class="grp"><h3>AI &amp; Data</h3><div class="pills"><span>Artificial Intelligence / Machine Learning</span><span>Data Analysis</span><span>AI Tools &amp; Prompt Engineering</span><span>n8n</span></div></div>
+    <div class="grp"><h3>Creative</h3><div class="pills"><span>3D Animation</span><span>3D Artist</span><span>Painting</span><span>Canva</span></div></div>
+    <div class="grp"><h3>Marketing</h3><div class="pills"><span>Digital Marketing</span><span>Google Ads</span><span>Meta Ads</span><span>SEO</span><span>WordPress</span><span>Mailchimp</span><span>Google Analytics</span></div></div>
+    <div class="grp"><h3>Office &amp; Work</h3><div class="pills"><span>Excel, Word &amp; PowerPoint</span><span>Freelancer</span></div></div>
+  </div>
+  <div class="say"><h3>What people say about <em>working with me</em></h3>
+    <!-- Sample testimonial: replace the name and words with a real quote before sharing publicly -->
+    <figure class="quote"><p id="qt">Mariam turns ideas into clean, working projects. She learns fast, pays attention to every detail and always delivers on time. Working with her was a real pleasure.</p>
+      <figcaption class="who"><i>A</i><span><b>Ayesha Malik</b><small>Classmate &amp; project partner</small></span></figcaption></figure>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="banner"><h2>Let's build something meaningful together.</h2><div class="cta-row"><a class="btn fill" href="mailto:mariamkhan2k26@gmail.com">Email me</a></div></div>
+  <div class="links">
+    <a href="mailto:mariamkhan2k26@gmail.com">Email <small>mariamkhan2k26@gmail.com ↗</small></a>
+    <a href="https://www.linkedin.com/in/mariam-khan-556249438/" target="_blank" rel="noopener">LinkedIn <small>mariam-khan ↗</small></a>
+    <a href="https://github.com/mariamkhan00" target="_blank" rel="noopener">GitHub <small>mariamkhan00 ↗</small></a>
+  </div>
+</div></section>
+<footer>© 2026 Mariam Khan. All rights reserved.</footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],root=document.documentElement;
+// theme (saved when storage is available)
+try{const t=localStorage.getItem('theme');if(t)root.dataset.theme=t}catch(e){}
+$('#theme').onclick=()=>{const t=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=t;try{localStorage.setItem('theme',t)}catch(e){}};
+// marquee: duplicate content for a seamless loop
+$$('.mq div').forEach(d=>d.innerHTML+=d.innerHTML);
+// active nav link
+const links=$$('.nav a.l'),io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.hash==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+$$('header[id],section[id]').forEach(s=>io.observe(s));
+// project filters
+$$('.filters button').forEach(b=>b.onclick=()=>{$$('.filters button').forEach(x=>x.classList.toggle('on',x===b));$$('.proj').forEach(p=>p.hidden=b.dataset.f!=='all'&&!p.dataset.cat.split(' ').includes(b.dataset.f))});
+// preview modal
+const dlg=$('#dlg');
+$$('[data-prev]').forEach(b=>b.onclick=()=>{$('#dt').textContent=b.dataset.t;$('#df').src=b.dataset.prev;dlg.showModal()});
+const close=()=>{dlg.close();$('#df').src='about:blank'};
+$('#dx').onclick=close;dlg.addEventListener('click',e=>{if(e.target===dlg)close()});dlg.addEventListener('cancel',()=>$('#df').src='about:blank');
+// hero: letters rise one by one, role words rotate, image follows the pointer
+(function(){let n=0;const h=$('.hero h1');const split=(el)=>[...el.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();[...c.textContent].forEach(ch=>{if(ch===' '){f.append(' ');return}const sp=document.createElement('span');sp.className='ch';sp.style.setProperty('--i',n++);sp.setAttribute('aria-hidden','true');sp.textContent=ch;f.append(sp)});c.replaceWith(f)}else split(c)});split(h);
+const roles=['Web Developer','AI Explorer','Cyber Security Learner','3D Artist','Creative Technologist'],r=$('#role');let k=0;setInterval(()=>{k=(k+1)%roles.length;r.textContent=roles[k]},2400);
+const fig=$('.fig');$('.hero').addEventListener('pointermove',e=>{fig.style.setProperty('--mx',(e.clientX/innerWidth-.5)*2);fig.style.setProperty('--my',(e.clientY/innerHeight-.5)*2)})})();
+// testimonial words blur in; skill pills pop in group by group
+const q=$('#qt');q.innerHTML=q.textContent.split(' ').map((w,i)=>`<span style="--i:${i}">${w}</span>`).join(' ');
+$$('.pills span').forEach((p,i)=>p.style.setProperty('--i',i%12));
+const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}}),{threshold:.3});
+rv.observe($('.quote'));$$('.grp').forEach(g=>rv.observe(g));
+// about statement lights up word by word while scrolling
+const st=$('#stmt');st.innerHTML=st.textContent.split(' ').map(w=>`<span>${w}</span>`).join(' ');
+const ws=$$('#stmt span'),lit=()=>{const r=st.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.3)));ws.forEach((w,i)=>w.classList.toggle('lit',i/ws.length<p))};
+addEventListener('scroll',lit,{passive:true});lit();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mariam Khan — Computer Science student, developer and creative thinker.">
+<title>Mariam Khan | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F1E7;--ink:#16201F;--mute:#56635F;--card:#FFFAF1;--line:rgba(22,32,31,.14);--acc:#F4561D;--on-acc:#fff;--glow:rgba(244,86,29,.35)}
+[data-theme=dark]{--bg:#071516;--ink:#EFF3EF;--mute:#9FB0AC;--card:#0D2325;--line:rgba(255,255,255,.14);--acc:#FF6B35;--on-acc:#071516;--glow:rgba(255,107,53,.4)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 'Plus Jakarta Sans',sans-serif;overflow-x:hidden;transition:background .4s,color .4s}
+h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400;line-height:1.02}
+em{font-style:italic;color:var(--acc)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.wrap{max-width:1120px;margin:auto;padding:0 clamp(18px,5vw,40px)}
+section{padding:clamp(70px,10vw,130px) 0}
+h2{font-size:clamp(40px,6.5vw,76px);margin-bottom:18px}
+.lead{color:var(--mute);max-width:520px}
+.btn{display:inline-block;padding:13px 24px;border-radius:99px;font-weight:700;font-size:14px;text-decoration:none;border:1px solid var(--ink);transition:transform .25s,background .25s;cursor:pointer;background:none;color:var(--ink);font-family:inherit}
+.btn:hover{transform:translateY(-3px)}
+.btn.fill{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+/* nav */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:6px;padding:6px;border-radius:99px;background:color-mix(in srgb,var(--card) 82%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);white-space:nowrap}
+.nav a.l{padding:8px 16px;border-radius:99px;font-size:13px;font-weight:500;text-decoration:none;transition:.25s}
+.nav a.l.on{background:var(--ink);color:var(--bg)}
+.nav button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);cursor:pointer;font-size:15px}
+.nav .talk{padding:9px 16px;font-size:13px;background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+/* hero */
+.hero{min-height:100svh;padding:110px 0 40px;display:flex;align-items:center;position:relative;overflow:hidden}
+.stage{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
 .hero h1{font-size:clamp(70px,15vw,200px);letter-spacing:-.02em;position:relative;z-index:1}
 .ch{display:inline-block;animation:letter .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*70ms + .1s)}
 @keyframes letter{from{opacity:0;transform:translateY(70%) rotate(8deg);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
