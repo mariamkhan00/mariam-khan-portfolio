@@ -205,27 +205,46 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
   </div>
 
   <!-- GOOGLE FORM & FEEDBACK DISPLAY SECTION -->
+  <!-- PREMIUM SUPABASE FEEDBACK SECTION -->
   <div class="say" style="margin-top: 60px;">
     <h3>Submit <em>Your Feedback</em></h3>
     <p class="lead" style="margin: 0 auto 20px;">Are you my teacher? I would love to hear your thoughts on my work and progress.</p>
     
     <div style="max-width: 800px; margin: 0 auto;">
       
-      <!-- 1. Google Form (Teacher fills this) -->
-      <div style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; margin-bottom: 30px;">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOa1A_H-O-UnHWDT5zB6TlTfDpkAtoZN_omdjhr1ytTirPOg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="border-radius: 12px;">Loading…</iframe>
+      <!-- 1. Feedback Form -->
+      <div class="feedback-form-container">
+        <form id="feedbackForm">
+          <div class="form-group">
+            <label for="fbName">Your Name</label>
+            <input type="text" id="fbName" name="name" placeholder="e.g. Dr. Adnan Ahmed" required>
+          </div>
+          <div class="form-group">
+            <label for="fbRole">Your Role / Designation</label>
+            <input type="text" id="fbRole" name="role" placeholder="e.g. Chairman, Cyber Security Dept" required>
+          </div>
+          <div class="form-group">
+            <label for="fbMessage">Your Feedback / Comments</label>
+            <textarea id="fbMessage" name="message" placeholder="Write your feedback about my work here..." required></textarea>
+          </div>
+          <button type="submit" class="btn fill" style="width:100%;" id="fbSubmitBtn">Submit Feedback</button>
+          
+          <div id="fbStatus" style="display:none; margin-top: 20px; padding: 15px; border-radius: 12px; text-align: center; font-weight: 600;"></div>
+        </form>
       </div>
 
-      <!-- 2. Google Sheet (Shows submitted feedback) -->
-      <div style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px;">
-        <h4 style="font-family: 'Instrument Serif', serif; font-size: 24px; margin-bottom: 15px; color: var(--ink);">What Teachers Are Saying</h4>
-        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vThaNmW3zejQZfDfsX8fKTP9wh0jEgp7CS0UTmafLPVWh_Kr6__UmuntWPbTXcKSh6XMFvBd8zGhDYt/pubhtml?gid=1820071825&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="400" frameborder="0" style="border-radius: 12px;">Loading…</iframe>
+      <!-- 2. Display Feedback (Comments) -->
+      <div style="margin-top: 50px; text-align: left;">
+        <h4 style="font-family: 'Instrument Serif', serif; font-size: 28px; margin-bottom: 20px; color: var(--ink); border-bottom: 2px solid var(--line); padding-bottom: 10px;">Recent Feedback</h4>
+        <div id="feedbackList" style="display: flex; flex-direction: column; gap: 15px;">
+          <!-- Feedback items will be loaded here by JavaScript -->
+          <p style="color: var(--mute); font-style: italic;">Loading feedback...</p>
+        </div>
       </div>
 
     </div>
   </div>
-
-</div></section>
+  <!-- END SUPABASE FEEDBACK SECTION -->
 
 <section id="contact"><div class="wrap">
   <div class="banner"><h2>Let's build something meaningful together.</h2><div class="cta-row"><a class="btn fill" href="mailto:mariamkhan2k26@gmail.com">Email me</a></div></div>
@@ -267,6 +286,94 @@ rv.observe($('.quote'));$$('.grp').forEach(g=>rv.observe(g));
 const st=$('#stmt');st.innerHTML=st.textContent.split(' ').map(w=>`<span>${w}</span>`).join(' ');
 const ws=$$('#stmt span'),lit=()=>{const r=st.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.3)));ws.forEach((w,i)=>w.classList.toggle('lit',i/ws.length<p))};
 addEventListener('scroll',lit,{passive:true});lit();
+// ==========================================
+// SUPABASE FEEDBACK SYSTEM
+// ==========================================
+const SUPABASE_URL = 'https://xgszqeqjvdewzdleodhi.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_ovzzbEGaxdmLbuopShnSEg_jBX0V9eg';
+
+// Supabase Client Initialize
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// 1. Form Submit Function
+document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('fbSubmitBtn');
+  const status = document.getElementById('fbStatus');
+  
+  const name = document.getElementById('fbName').value;
+  const role = document.getElementById('fbRole').value;
+  const message = document.getElementById('fbMessage').value;
+
+  btn.innerText = 'Submitting...';
+  btn.disabled = true;
+
+  // Insert data into 'feedback' table
+  const { data, error } = await supabaseClient
+    .from('feedback')
+    .insert([{ name: name, role: role, message: message }]);
+
+  if (error) {
+    console.error('Error:', error);
+    status.style.display = 'block';
+    status.style.background = 'rgba(220, 38, 38, 0.1)';
+    status.style.color = '#dc2626';
+    status.style.border = '1px solid rgba(220, 38, 38, 0.3)';
+    status.innerText = 'Oops! There was an error. Please try again.';
+  } else {
+    status.style.display = 'block';
+    status.style.background = 'rgba(37, 129, 88, 0.1)';
+    status.style.color = '#258158';
+    status.style.border = '1px solid rgba(37, 129, 88, 0.3)';
+    status.innerText = 'Thank you! Your feedback has been submitted.';
+    
+    document.getElementById('feedbackForm').reset();
+    loadFeedback(); // Refresh the feedback list
+  }
+  
+  btn.innerText = 'Submit Feedback';
+  btn.disabled = false;
+});
+
+// 2. Load Feedback Function
+async function loadFeedback() {
+  const listContainer = document.getElementById('feedbackList');
+  
+  const { data, error } = await supabaseClient
+    .from('feedback')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error loading feedback:', error);
+    listContainer.innerHTML = '<p style="color: var(--mute); font-style: italic;">Could not load feedback.</p>';
+    return;
+  }
+
+  if (data.length === 0) {
+    listContainer.innerHTML = '<p style="color: var(--mute); font-style: italic;">No feedback yet. Be the first to submit!</p>';
+    return;
+  }
+
+  // Render each feedback as a comment card
+  listContainer.innerHTML = data.map(item => `
+    <div style="background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--acc); color: var(--on-acc); display: grid; place-items: center; font-weight: 700; font-size: 16px;">
+          ${item.name.charAt(0).toUpperCase()}
+        </div>
+        <div>
+          <h5 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px; margin: 0; color: var(--ink);">${item.name}</h5>
+          <small style="color: var(--mute); font-size: 13px;">${item.role}</small>
+        </div>
+      </div>
+      <p style="color: var(--ink); font-size: 15px; line-height: 1.6; margin: 0;">${item.message}</p>
+    </div>
+  `).join('');
+}
+
+// 3. Load feedback when page loads
+document.addEventListener('DOMContentLoaded', loadFeedback);
 </script>
 </body>
 </html>
