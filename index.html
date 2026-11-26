@@ -204,31 +204,26 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
       <figcaption class="who"><i>A</i><span><b>Ayesha Malik</b><small>Classmate &amp; project partner</small></span></figcaption></figure>
   </div>
 
-  <!-- NEW REAL TEACHER FEEDBACK FORM SECTION -->
+  <!-- GOOGLE FORM & FEEDBACK DISPLAY SECTION -->
   <div class="say" style="margin-top: 60px;">
-    <h3>Submit <em>Your Thoughts</em></h3>
-    <p class="lead" style="margin: 0 auto 20px;">I would love to hear your thoughts on my work and progress.</p>
+    <h3>Submit <em>Your Feedback</em></h3>
+    <p class="lead" style="margin: 0 auto 20px;">Are you my teacher? I would love to hear your thoughts on my work and progress.</p>
     
-    <div class="feedback-form-container">
-      <!-- Yahan aap apna Formspree link dalengi baad mein. Abhi yeh demo form hai -->
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="e.g. Dr. Adnan Ahmed" required>
-        </div>
-        <div class="form-group">
-          <label for="role">Your Role / Designation</label>
-          <input type="text" id="role" name="role" placeholder="e.g. Chairman, Cyber Security Dept" required>
-        </div>
-        <div class="form-group">
-          <label for="feedback">Your Feedback / Comments</label>
-          <textarea id="feedback" name="feedback" placeholder="Write your feedback about my work here..." required></textarea>
-        </div>
-        <button type="submit" class="btn fill" style="width:100%;">Submit Feedback</button>
-      </form>
+    <div style="max-width: 800px; margin: 0 auto;">
+      
+      <!-- 1. Google Form (Teacher fills this) -->
+      <div style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; margin-bottom: 30px;">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOa1A_H-O-UnHWDT5zB6TlTfDpkAtoZN_omdjhr1ytTirPOg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="border-radius: 12px;">Loading…</iframe>
+      </div>
+
+      <!-- 2. Google Sheet (Shows submitted feedback) -->
+      <div style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px;">
+        <h4 style="font-family: 'Instrument Serif', serif; font-size: 24px; margin-bottom: 15px; color: var(--ink);">What Teachers Are Saying</h4>
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vThaNmW3zejQZfDfsX8fKTP9wh0jEgp7CS0UTmafLPVWh_Kr6__UmuntWPbTXcKSh6XMFvBd8zGhDYt/pubhtml?gid=1820071825&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="400" frameborder="0" style="border-radius: 12px;">Loading…</iframe>
+      </div>
+
     </div>
   </div>
-  <!-- END NEW FEEDBACK FORM SECTION -->
 
 </div></section>
 
