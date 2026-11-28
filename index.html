@@ -40,14 +40,14 @@ h2{font-size:clamp(40px,6.5vw,76px);margin-bottom:18px}
 .role{margin-top:26px;position:relative;z-index:3;font-size:clamp(15px,2vw,19px);color:var(--mute);animation:rise 1s .5s both}
 .role b{color:var(--acc);display:inline-block;animation:swap 2.4s infinite}
 @keyframes swap{0%{opacity:0;transform:translateY(10px)}12%,80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-10px)}}
-.fig{position:relative;z-index:2;--mx:0;--my:0;margin-top:-2vw;width:min(320px,70vw);aspect-ratio:1;display:grid;place-items:end center;animation:rise 1s .35s both}
+.fig{position:relative;z-index:2;--mx:0;--my:0;margin-top:-6vw;width:min(380px,78vw);aspect-ratio:1;display:grid;place-items:end center;animation:rise 1s .35s both}
 .fig::before{content:"";position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb27a,var(--acc));box-shadow:0 0 90px var(--glow);animation:pulse 4s ease-in-out infinite;translate:calc(var(--mx)*-10px) calc(var(--my)*-6px)}
 .fig::after{content:"";position:absolute;inset:-9%;z-index:-1;border-radius:50%;border:1.5px dashed var(--acc);opacity:.5;animation:spin 40s linear infinite}
 @keyframes pulse{50%{transform:scale(1.04);box-shadow:0 0 130px var(--glow)}}
 @keyframes spin{to{transform:rotate(360deg)}}
-.fig img{position:relative;height:115%;width:auto;max-width:none;filter:drop-shadow(0 16px 24px rgba(0,0,0,.28));animation:float 5s ease-in-out infinite;margin-bottom:-3%;translate:calc(var(--mx)*14px) calc(var(--my)*8px)}
+.fig img{position:relative;height:118%;width:auto;max-width:none;filter:drop-shadow(0 16px 24px rgba(0,0,0,.28));animation:float 5s ease-in-out infinite;margin-bottom:-4%;translate:calc(var(--mx)*14px) calc(var(--my)*8px)}
 .chip{position:absolute;z-index:3;translate:calc(var(--mx)*-18px) calc(var(--my)*-10px);padding:7px 14px;border-radius:99px;font-size:12px;font-weight:700;background:var(--card);border:1px solid var(--line);animation:float 6s ease-in-out infinite;white-space:nowrap}
-.chip:nth-of-type(1){left:-30%;top:20%}.chip:nth-of-type(2){right:-35%;top:10%;animation-delay:-2s}.chip:nth-of-type(3){left:-32%;bottom:24%;animation-delay:-4s}.chip:nth-of-type(4){right:-28%;bottom:14%;animation-delay:-1s}
+.chip:nth-of-type(1){left:-34%;top:20%}.chip:nth-of-type(2){right:-40%;top:10%;animation-delay:-2s}.chip:nth-of-type(3){left:-38%;bottom:24%;animation-delay:-4s}.chip:nth-of-type(4){right:-32%;bottom:14%;animation-delay:-1s}
 .hero .lead{margin:28px auto 22px;animation:rise 1s .6s both}
 .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:rise 1s .75s both}
 @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
@@ -55,7 +55,7 @@ h2{font-size:clamp(40px,6.5vw,76px);margin-bottom:18px}
 /* marquee */
 .mq{border-block:1px solid var(--line);padding:18px 0;overflow:hidden;font-family:'Instrument Serif',serif;font-size:clamp(28px,4vw,44px)}
 .mq div{display:flex;width:max-content;gap:40px;animation:slide 32s linear infinite}
-.mq div+div{animation-direction:reverse;margin-top:6px;font-style:italic;color:transparent;-webkit-text-stroke:1px var(--mute);display:none;} /* Hidden the second line */
+.mq div+div{animation-direction:reverse;margin-top:6px;font-style:italic;color:transparent;-webkit-text-stroke:1px var(--mute)}
 .mq span::after{content:"•";margin-left:40px;color:var(--acc);-webkit-text-stroke:0}
 @keyframes slide{to{transform:translateX(-50%)}}
 /* work */
@@ -108,17 +108,8 @@ dialog iframe{width:100%;height:calc(100% - 52px);border:0;background:#fff}
 .links a:last-child{border-bottom:1px solid var(--line)}.links a:hover{padding-left:14px;color:var(--acc)}
 .links small{font:400 14px 'Plus Jakarta Sans';color:var(--mute)}
 footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
-@media(max-width:600px){.nav a.l{padding:8px 10px;font-size:12px}.nav .talk{display:none}.chip{font-size:10px;padding:5px 10px}.hero{padding-top:96px}.hero h1{font-size:15.5vw;white-space:nowrap}.fig{width:82vw;margin-top:-2vw}.fig img{position:absolute;left:0;right:0;bottom:-3%;margin:0 auto;height:112%;width:auto}.chip:nth-of-type(1){left:-6%;top:26%}.chip:nth-of-type(2){right:-6%;top:6%}.chip:nth-of-type(3){left:-6%;bottom:30%}.chip:nth-of-type(4){right:-6%;bottom:10%}.role{margin-top:30px}.hero .lead{margin-top:10px!important;font-size:15px}}
+@media(max-width:600px){.nav a.l{padding:8px 10px;font-size:12px}.nav .talk{display:none}.chip{font-size:10px;padding:5px 10px}.hero{padding-top:96px}.hero h1{font-size:15.5vw;white-space:nowrap}.fig{width:82vw;margin-top:-5vw}.fig img{position:absolute;left:0;right:0;bottom:-3%;margin:0 auto;height:116%;width:auto}.chip:nth-of-type(1){left:-6%;top:26%}.chip:nth-of-type(2){right:-6%;top:6%}.chip:nth-of-type(3){left:-6%;bottom:30%}.chip:nth-of-type(4){right:-6%;bottom:10%}.role{margin-top:30px}.hero .lead{margin-top:10px!important;font-size:15px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-
-/* New Teacher Feedback Form Styles */
-.feedback-form-container{max-width:700px;margin:40px auto 0;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:clamp(24px,5vw,50px);text-align:left;}
-.feedback-form-container h4{font-family:'Instrument Serif',serif;font-size:28px;margin-bottom:20px;}
-.form-group{margin-bottom:20px;}
-.form-group label{display:block;font-size:14px;font-weight:700;margin-bottom:8px;color:var(--ink);}
-.form-group input,.form-group textarea{width:100%;padding:14px 18px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-family:inherit;font-size:15px;transition:border-color .3s;}
-.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--acc);}
-.form-group textarea{resize:vertical;min-height:120px;}
 </style>
 </head>
 <body>
@@ -141,7 +132,6 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
 
 <div class="mq" aria-hidden="true">
   <div><span>Web Development</span><span>React / Next.js</span><span>AI &amp; Problem Solving</span><span>Cyber Security</span><span>3D Animation</span><span>Graphic Design</span></div>
-  <!-- Second line hidden via CSS -->
   <div><span>Prompt Engineering</span><span>Digital Marketing</span><span>SEO</span><span>Data Analysis</span><span>Supabase</span><span>n8n</span></div>
 </div>
 
@@ -172,7 +162,7 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
 <dialog id="dlg"><div class="bar"><span id="dt"></span><button class="btn" id="dx">Close</button></div><iframe id="df" title="Project preview" loading="lazy"></iframe></dialog>
 
 <section id="about"><div class="wrap">
-  <p class="stmt" id="stmt">I'm Mariam Khan, a Computer Science student specialized in cybersecurity at QUEST University, Nawabshah. I enjoy exploring technology, building websites, making digital designs and turning creative ideas into practical projects.</p>
+  <p class="stmt" id="stmt">I'm Mariam Khan, a Computer Science student at QUEST University, Nawabshah. I enjoy exploring technology, building websites, making digital designs and turning creative ideas into practical projects.</p>
   <div class="skills">
     <div><h3>Web Development</h3><p>Responsive websites with HTML, CSS, JavaScript and Bootstrap.</p></div>
     <div><h3>AI &amp; Problem Solving</h3><p>Artificial intelligence, prompt engineering and algorithmic logic.</p></div>
@@ -200,51 +190,11 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
     <div class="grp"><h3>Office &amp; Work</h3><div class="pills"><span>Excel, Word &amp; PowerPoint</span><span>Freelancer</span></div></div>
   </div>
   <div class="say"><h3>What people say about <em>working with me</em></h3>
+    <!-- Sample testimonial: replace the name and words with a real quote before sharing publicly -->
     <figure class="quote"><p id="qt">Mariam turns ideas into clean, working projects. She learns fast, pays attention to every detail and always delivers on time. Working with her was a real pleasure.</p>
       <figcaption class="who"><i>A</i><span><b>Ayesha Malik</b><small>Classmate &amp; project partner</small></span></figcaption></figure>
   </div>
-
-  <!-- GOOGLE FORM & FEEDBACK DISPLAY SECTION -->
-  <!-- PREMIUM SUPABASE FEEDBACK SECTION -->
-  <div class="say" style="margin-top: 60px;">
-    <h3>Submit <em>Your Thoughts</em></h3>
-    <p class="lead" style="margin: 0 auto 20px;">I would love to hear your thoughts on my work and progress.</p>
-    
-    <div style="max-width: 800px; margin: 0 auto;">
-      
-      <!-- 1. Feedback Form -->
-      <div class="feedback-form-container">
-        <form id="feedbackForm">
-          <div class="form-group">
-            <label for="fbName">Your Name</label>
-            <input type="text" id="fbName" name="name" placeholder="e.g. Dr. Adnan Ahmed" required>
-          </div>
-          <div class="form-group">
-            <label for="fbRole">Your Role / Designation</label>
-            <input type="text" id="fbRole" name="role" placeholder="e.g. Chairman, Cyber Security Dept" required>
-          </div>
-          <div class="form-group">
-            <label for="fbMessage">Your Feedback / Comments</label>
-            <textarea id="fbMessage" name="message" placeholder="Write your feedback about my work here..." required></textarea>
-          </div>
-          <button type="submit" class="btn fill" style="width:100%;" id="fbSubmitBtn">Submit Feedback</button>
-          
-          <div id="fbStatus" style="display:none; margin-top: 20px; padding: 15px; border-radius: 12px; text-align: center; font-weight: 600;"></div>
-        </form>
-      </div>
-
-      <!-- 2. Display Feedback (Comments) -->
-      <div style="margin-top: 50px; text-align: left;">
-        <h4 style="font-family: 'Instrument Serif', serif; font-size: 28px; margin-bottom: 20px; color: var(--ink); border-bottom: 2px solid var(--line); padding-bottom: 10px;">Recent Feedback</h4>
-        <div id="feedbackList" style="display: flex; flex-direction: column; gap: 15px;">
-          <!-- Feedback items will be loaded here by JavaScript -->
-          <p style="color: var(--mute); font-style: italic;">Loading feedback...</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <!-- END SUPABASE FEEDBACK SECTION -->
+</div></section>
 
 <section id="contact"><div class="wrap">
   <div class="banner"><h2>Let's build something meaningful together.</h2><div class="cta-row"><a class="btn fill" href="mailto:mariamkhan2k26@gmail.com">Email me</a></div></div>
@@ -255,10 +205,7 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
   </div>
 </div></section>
 <footer>© 2026 Mariam Khan. All rights reserved.</footer>
-<!-- Supabase Library -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- Main JavaScript -->
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],root=document.documentElement;
 // theme (saved when storage is available)
@@ -289,235 +236,6 @@ rv.observe($('.quote'));$$('.grp').forEach(g=>rv.observe(g));
 const st=$('#stmt');st.innerHTML=st.textContent.split(' ').map(w=>`<span>${w}</span>`).join(' ');
 const ws=$$('#stmt span'),lit=()=>{const r=st.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.3)));ws.forEach((w,i)=>w.classList.toggle('lit',i/ws.length<p))};
 addEventListener('scroll',lit,{passive:true});lit();
-// ==========================================
-// SUPABASE FEEDBACK SYSTEM
-// ==========================================
-
-const SUPABASE_URL =
-"https://xgszqeqjvdewzdleodhi.supabase.co";
-
-const SUPABASE_ANON_KEY =
-"sb_publishable_oVzzbEGaxdmlBuopShnSEg_jBX0V9eg";
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
-
-const SUPABASE_ANON_KEY =
-    "sb_publishable_oVzzbEGaxdmlBuopShnSEg_jBX0V9eg";
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
-
-
-// ==========================================
-// SUBMIT FEEDBACK
-// ==========================================
-
-const feedbackForm = document.getElementById("feedbackForm");
-
-feedbackForm.addEventListener("submit", async function (e) {
-
-    e.preventDefault();
-
-    const btn = document.getElementById("fbSubmitBtn");
-    const status = document.getElementById("fbStatus");
-
-    const name = document.getElementById("fbName").value.trim();
-    const role = document.getElementById("fbRole").value.trim();
-    const message = document.getElementById("fbMessage").value.trim();
-
-    if (!name || !role || !message) {
-        alert("Please fill in all fields.");
-        return;
-    }
-
-    btn.disabled = true;
-    btn.innerText = "Submitting...";
-
-    status.style.display = "none";
-
-    try {
-
-        const { error } = await supabaseClient
-            .from("feedback")
-            .insert([
-                {
-                    name: name,
-                    role: role,
-                    message: message
-                }
-            ]);
-
-        if (error) {
-            throw error;
-        }
-
-        status.style.display = "block";
-        status.style.background = "rgba(37,129,88,0.1)";
-        status.style.color = "#258158";
-        status.style.border = "1px solid rgba(37,129,88,0.3)";
-
-        status.innerText =
-            "Thank you! Your feedback has been submitted successfully.";
-
-        feedbackForm.reset();
-
-        await loadFeedback();
-
-    } catch (error) {
-
-        console.error("Feedback submission error:", error);
-
-        status.style.display = "block";
-        status.style.background = "rgba(220,38,38,0.1)";
-        status.style.color = "#dc2626";
-        status.style.border = "1px solid rgba(220,38,38,0.3)";
-
-        status.innerText =
-            "Feedback could not be submitted: " + error.message;
-
-    } finally {
-
-        btn.disabled = false;
-        btn.innerText = "Submit Feedback";
-
-    }
-
-});
-
-
-// ==========================================
-// LOAD FEEDBACK
-// ==========================================
-
-async function loadFeedback() {
-
-    const listContainer =
-        document.getElementById("feedbackList");
-
-    try {
-
-        const { data, error } = await supabaseClient
-            .from("feedback")
-            .select("id, created_at, name, role, message")
-            .order("created_at", { ascending: false });
-
-        if (error) {
-            throw error;
-        }
-
-        listContainer.innerHTML = "";
-
-        if (!data || data.length === 0) {
-
-            listContainer.innerHTML =
-                '<p style="color:var(--mute);font-style:italic;">No feedback yet. Be the first to submit!</p>';
-
-            return;
-        }
-
-        data.forEach(item => {
-
-            const card = document.createElement("div");
-
-            card.style.cssText = `
-                background:var(--card);
-                border:1px solid var(--line);
-                border-radius:16px;
-                padding:20px;
-            `;
-
-            const heading = document.createElement("div");
-
-            heading.style.cssText = `
-                display:flex;
-                align-items:center;
-                gap:12px;
-                margin-bottom:12px;
-            `;
-
-            const avatar = document.createElement("div");
-
-            avatar.style.cssText = `
-                width:40px;
-                height:40px;
-                border-radius:50%;
-                background:var(--acc);
-                color:var(--on-acc);
-                display:grid;
-                place-items:center;
-                font-weight:700;
-                font-size:16px;
-            `;
-
-            avatar.textContent =
-                (item.name || "?").charAt(0).toUpperCase();
-
-            const details = document.createElement("div");
-
-            const personName = document.createElement("h5");
-
-            personName.style.cssText = `
-                font-family:'Plus Jakarta Sans',sans-serif;
-                font-weight:700;
-                font-size:16px;
-                margin:0;
-                color:var(--ink);
-            `;
-
-            personName.textContent = item.name;
-
-            const personRole = document.createElement("small");
-
-            personRole.style.cssText = `
-                color:var(--mute);
-                font-size:13px;
-            `;
-
-            personRole.textContent = item.role;
-
-            details.append(personName, personRole);
-            heading.append(avatar, details);
-
-            const feedbackMessage = document.createElement("p");
-
-            feedbackMessage.style.cssText = `
-                color:var(--ink);
-                font-size:15px;
-                line-height:1.6;
-                margin:0;
-                white-space:pre-wrap;
-            `;
-
-            feedbackMessage.textContent = item.message;
-
-            card.append(heading, feedbackMessage);
-
-            listContainer.appendChild(card);
-
-        });
-
-    } catch (error) {
-
-        console.error("Feedback loading error:", error);
-
-        listContainer.innerHTML =
-            '<p style="color:var(--mute);">Could not load feedback. Please refresh the page.</p>';
-
-    }
-
-}
-
-
-// ==========================================
-// LOAD FEEDBACK WHEN PAGE OPENS
-// ==========================================
-
-loadFeedback();
 </script>
 </body>
 </html>
