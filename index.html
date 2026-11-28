@@ -255,7 +255,10 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
   </div>
 </div></section>
 <footer>© 2026 Mariam Khan. All rights reserved.</footer>
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<!-- Main JavaScript -->
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],root=document.documentElement;
 // theme (saved when storage is available)
@@ -289,91 +292,223 @@ addEventListener('scroll',lit,{passive:true});lit();
 // ==========================================
 // SUPABASE FEEDBACK SYSTEM
 // ==========================================
-const SUPABASE_URL = 'https://xgszqeqjvdewzdleodhi.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_ovzzbEGaxdmLbuopShnSEg_jBX0V9eg';
 
-// Supabase Client Initialize
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const SUPABASE_URL = "https://xgszqeqjvdewdzleodhi.supabase.co";
 
-// 1. Form Submit Function
-document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('fbSubmitBtn');
-  const status = document.getElementById('fbStatus');
-  
-  const name = document.getElementById('fbName').value;
-  const role = document.getElementById('fbRole').value;
-  const message = document.getElementById('fbMessage').value;
+const SUPABASE_ANON_KEY =
+    "sb_publishable_oVzzbEGaxdmlBuopShnSEg_jBX0V9eg";
 
-  btn.innerText = 'Submitting...';
-  btn.disabled = true;
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
 
-  // Insert data into 'feedback' table
-  const { data, error } = await supabaseClient
-    .from('feedback')
-    .insert([{ name: name, role: role, message: message }]);
 
-  if (error) {
-    console.error('Error:', error);
-    status.style.display = 'block';
-    status.style.background = 'rgba(220, 38, 38, 0.1)';
-    status.style.color = '#dc2626';
-    status.style.border = '1px solid rgba(220, 38, 38, 0.3)';
-    status.innerText = 'Oops! There was an error. Please try again.';
-  } else {
-    status.style.display = 'block';
-    status.style.background = 'rgba(37, 129, 88, 0.1)';
-    status.style.color = '#258158';
-    status.style.border = '1px solid rgba(37, 129, 88, 0.3)';
-    status.innerText = 'Thank you! Your feedback has been submitted.';
-    
-    document.getElementById('feedbackForm').reset();
-    loadFeedback(); // Refresh the feedback list
-  }
-  
-  btn.innerText = 'Submit Feedback';
-  btn.disabled = false;
+// ==========================================
+// SUBMIT FEEDBACK
+// ==========================================
+
+const feedbackForm = document.getElementById("feedbackForm");
+
+feedbackForm.addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    const btn = document.getElementById("fbSubmitBtn");
+    const status = document.getElementById("fbStatus");
+
+    const name = document.getElementById("fbName").value.trim();
+    const role = document.getElementById("fbRole").value.trim();
+    const message = document.getElementById("fbMessage").value.trim();
+
+    if (!name || !role || !message) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "Submitting...";
+
+    status.style.display = "none";
+
+    try {
+
+        const { error } = await supabaseClient
+            .from("feedback")
+            .insert([
+                {
+                    name: name,
+                    role: role,
+                    message: message
+                }
+            ]);
+
+        if (error) {
+            throw error;
+        }
+
+        status.style.display = "block";
+        status.style.background = "rgba(37,129,88,0.1)";
+        status.style.color = "#258158";
+        status.style.border = "1px solid rgba(37,129,88,0.3)";
+
+        status.innerText =
+            "Thank you! Your feedback has been submitted successfully.";
+
+        feedbackForm.reset();
+
+        await loadFeedback();
+
+    } catch (error) {
+
+        console.error("Feedback submission error:", error);
+
+        status.style.display = "block";
+        status.style.background = "rgba(220,38,38,0.1)";
+        status.style.color = "#dc2626";
+        status.style.border = "1px solid rgba(220,38,38,0.3)";
+
+        status.innerText =
+            "Feedback could not be submitted: " + error.message;
+
+    } finally {
+
+        btn.disabled = false;
+        btn.innerText = "Submit Feedback";
+
+    }
+
 });
 
-// 2. Load Feedback Function
+
+// ==========================================
+// LOAD FEEDBACK
+// ==========================================
+
 async function loadFeedback() {
-  const listContainer = document.getElementById('feedbackList');
-  
-  const { data, error } = await supabaseClient
-    .from('feedback')
-    .select('*')
-    .order('created_at', { ascending: false });
 
-  if (error) {
-    console.error('Error loading feedback:', error);
-    listContainer.innerHTML = '<p style="color: var(--mute); font-style: italic;">Could not load feedback.</p>';
-    return;
-  }
+    const listContainer =
+        document.getElementById("feedbackList");
 
-  if (data.length === 0) {
-    listContainer.innerHTML = '<p style="color: var(--mute); font-style: italic;">No feedback yet. Be the first to submit!</p>';
-    return;
-  }
+    try {
 
-  // Render each feedback as a comment card
-  listContainer.innerHTML = data.map(item => `
-    <div style="background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px;">
-      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-        <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--acc); color: var(--on-acc); display: grid; place-items: center; font-weight: 700; font-size: 16px;">
-          ${item.name.charAt(0).toUpperCase()}
-        </div>
-        <div>
-          <h5 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px; margin: 0; color: var(--ink);">${item.name}</h5>
-          <small style="color: var(--mute); font-size: 13px;">${item.role}</small>
-        </div>
-      </div>
-      <p style="color: var(--ink); font-size: 15px; line-height: 1.6; margin: 0;">${item.message}</p>
-    </div>
-  `).join('');
+        const { data, error } = await supabaseClient
+            .from("feedback")
+            .select("id, created_at, name, role, message")
+            .order("created_at", { ascending: false });
+
+        if (error) {
+            throw error;
+        }
+
+        listContainer.innerHTML = "";
+
+        if (!data || data.length === 0) {
+
+            listContainer.innerHTML =
+                '<p style="color:var(--mute);font-style:italic;">No feedback yet. Be the first to submit!</p>';
+
+            return;
+        }
+
+        data.forEach(item => {
+
+            const card = document.createElement("div");
+
+            card.style.cssText = `
+                background:var(--card);
+                border:1px solid var(--line);
+                border-radius:16px;
+                padding:20px;
+            `;
+
+            const heading = document.createElement("div");
+
+            heading.style.cssText = `
+                display:flex;
+                align-items:center;
+                gap:12px;
+                margin-bottom:12px;
+            `;
+
+            const avatar = document.createElement("div");
+
+            avatar.style.cssText = `
+                width:40px;
+                height:40px;
+                border-radius:50%;
+                background:var(--acc);
+                color:var(--on-acc);
+                display:grid;
+                place-items:center;
+                font-weight:700;
+                font-size:16px;
+            `;
+
+            avatar.textContent =
+                (item.name || "?").charAt(0).toUpperCase();
+
+            const details = document.createElement("div");
+
+            const personName = document.createElement("h5");
+
+            personName.style.cssText = `
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-weight:700;
+                font-size:16px;
+                margin:0;
+                color:var(--ink);
+            `;
+
+            personName.textContent = item.name;
+
+            const personRole = document.createElement("small");
+
+            personRole.style.cssText = `
+                color:var(--mute);
+                font-size:13px;
+            `;
+
+            personRole.textContent = item.role;
+
+            details.append(personName, personRole);
+            heading.append(avatar, details);
+
+            const feedbackMessage = document.createElement("p");
+
+            feedbackMessage.style.cssText = `
+                color:var(--ink);
+                font-size:15px;
+                line-height:1.6;
+                margin:0;
+                white-space:pre-wrap;
+            `;
+
+            feedbackMessage.textContent = item.message;
+
+            card.append(heading, feedbackMessage);
+
+            listContainer.appendChild(card);
+
+        });
+
+    } catch (error) {
+
+        console.error("Feedback loading error:", error);
+
+        listContainer.innerHTML =
+            '<p style="color:var(--mute);">Could not load feedback. Please refresh the page.</p>';
+
+    }
+
 }
 
-// 3. Load feedback when page loads
-document.addEventListener('DOMContentLoaded', loadFeedback);
+
+// ==========================================
+// LOAD FEEDBACK WHEN PAGE OPENS
+// ==========================================
+
+loadFeedback();
 </script>
 </body>
 </html>
