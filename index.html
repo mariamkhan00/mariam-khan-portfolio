@@ -293,7 +293,16 @@ addEventListener('scroll',lit,{passive:true});lit();
 // SUPABASE FEEDBACK SYSTEM
 // ==========================================
 
-const SUPABASE_URL = "https://xgszqeqjvdewdzleodhi.supabase.co";
+const SUPABASE_URL =
+"https://xgszqeqjvdewzdleodhi.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_oVzzbEGaxdmlBuopShnSEg_jBX0V9eg";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
 
 const SUPABASE_ANON_KEY =
     "sb_publishable_oVzzbEGaxdmlBuopShnSEg_jBX0V9eg";
