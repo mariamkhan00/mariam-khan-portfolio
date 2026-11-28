@@ -33,14 +33,14 @@ h2{font-size:clamp(40px,6.5vw,76px);margin-bottom:18px}
 .nav .talk{padding:9px 16px;font-size:13px;background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
 /* hero */
 .hero{min-height:100svh;padding:110px 0 40px;display:flex;align-items:center;position:relative;overflow:hidden}
-.stage{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
-.hero h1{font-size:clamp(64px,12.5vw,164px);letter-spacing:-.02em;position:relative;z-index:3;white-space:nowrap}
+.stage{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;min-height:calc(100svh - 150px);justify-content:center}
+.hero h1{font-size:clamp(64px,12.5vw,164px);letter-spacing:-.02em;position:absolute;top:20%;left:0;right:0;z-index:1;white-space:nowrap;pointer-events:none}
 .ch{display:inline-block;animation:letter .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*70ms + .1s)}
 @keyframes letter{from{opacity:0;transform:translateY(70%) rotate(8deg);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
 .role{margin-top:26px;position:relative;z-index:3;font-size:clamp(15px,2vw,19px);color:var(--mute);animation:rise 1s .5s both}
 .role b{color:var(--acc);display:inline-block;animation:swap 2.4s infinite}
 @keyframes swap{0%{opacity:0;transform:translateY(10px)}12%,80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-10px)}}
-.fig{position:relative;z-index:1;--mx:0;--my:0;margin-top:-5.5vw;width:min(310px,66vw);aspect-ratio:1;display:grid;place-items:end center;animation:rise 1s .35s both}
+.fig{position:relative;z-index:2;--mx:0;--my:0;margin-top:0;width:min(310px,66vw);aspect-ratio:1;display:grid;place-items:end center;animation:rise 1s .35s both}
 .fig::before{content:"";position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb27a,var(--acc));box-shadow:0 0 90px var(--glow);animation:pulse 4s ease-in-out infinite;translate:calc(var(--mx)*-10px) calc(var(--my)*-6px)}
 .fig::after{content:"";position:absolute;inset:-9%;z-index:-1;border-radius:50%;border:1.5px dashed var(--acc);opacity:.5;animation:spin 40s linear infinite}
 @keyframes pulse{50%{transform:scale(1.04);box-shadow:0 0 130px var(--glow)}}
@@ -108,7 +108,7 @@ dialog iframe{width:100%;height:calc(100% - 52px);border:0;background:#fff}
 .links a:last-child{border-bottom:1px solid var(--line)}.links a:hover{padding-left:14px;color:var(--acc)}
 .links small{font:400 14px 'Plus Jakarta Sans';color:var(--mute)}
 footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
-@media(max-width:600px){.nav a.l{padding:8px 10px;font-size:12px}.nav .talk{display:none}.chip{font-size:10px;padding:5px 10px}.hero{padding-top:96px}.hero h1{font-size:12.5vw;white-space:nowrap}.fig{width:min(66vw,290px);margin-top:-5vw}.fig img{position:relative;left:auto;right:auto;bottom:auto;margin:0 auto 2%;height:96%;width:auto;max-width:88%}.chip:nth-of-type(1){left:-6%;top:26%}.chip:nth-of-type(2){right:-6%;top:6%}.chip:nth-of-type(3){left:-6%;bottom:30%}.chip:nth-of-type(4){right:-6%;bottom:10%}.role{margin-top:30px}.hero .lead{margin-top:10px!important;font-size:15px}}
+@media(max-width:600px){.nav a.l{padding:8px 10px;font-size:12px}.nav .talk{display:none}.chip{font-size:10px;padding:5px 10px}.hero{padding-top:96px}.hero h1{font-size:12.5vw;white-space:nowrap;top:22%;left:50%;right:auto;transform:translateX(-50%);width:max-content}.fig{width:min(66vw,290px);margin-top:0}.fig img{position:relative;left:auto;right:auto;bottom:auto;margin:0 auto 2%;height:96%;width:auto;max-width:88%}.chip:nth-of-type(1){left:-6%;top:26%}.chip:nth-of-type(2){right:-6%;top:6%}.chip:nth-of-type(3){left:-6%;bottom:30%}.chip:nth-of-type(4){right:-6%;bottom:10%}.role{margin-top:30px}.hero .lead{margin-top:10px!important;font-size:15px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -192,11 +192,11 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:30px 0 40px}
     <div class="say-grid">
       <!-- Sample testimonials: replace these with genuine feedback before publishing. -->
       <figure class="quote"><p>Mariam turns ideas into clean, working projects. She learns fast, pays attention to every detail and always delivers on time. Working with her was a real pleasure.</p>
-        <figcaption class="who"><i>A</i><span><b>Ayesha Malik</b><small>Classmate &amp; project partner</small></span></figcaption></figure>
+        <figcaption class="who"><i>A</i><span><b>Ayesha Malik</b><small>Classmate &amp; project partner </small></span></figcaption></figure>
       <figure class="quote"><p>She brings creativity and a thoughtful approach to every task. Her willingness to learn and improve makes working together a positive experience.</p>
         <figcaption class="who"><i>T</i><span><b>Teacher / collaborator</b><small></small></span></figcaption></figure>
       <figure class="quote"><p>Mariam is enthusiastic about technology and enjoys turning ideas into practical digital experiences. She is curious, focused and open to new challenges.</p>
-        <figcaption class="who"><i>P</i><span><b>Project teammate</b><small></small></span></figcaption></figure>
+        <figcaption class="who"><i>P</i><span><b>Project teammate</b><small>Classmate &amp; project partner </small></span></figcaption></figure>
     </div>
   </div>
 </div></section>
